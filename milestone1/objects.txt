@@ -1,0 +1,37 @@
+Samsung calendar
+maggawa ng database para meron ding autofill
+
+Project
+
+
+Tasks
+type
+content
+date
+time(start, end)
+users_assigned
+priority
+
+------------------------------
+Group
+users
+tasks
+
+------------------------------
+Users
+profile
+availability
+preferred_tasks
+
+complete() {if deliverable, send to manager, manager will make complete, make pending and disappear from tasks}
+------------------------------
+Managers
+profile
+
+create_task()
+group_task()
+assign_task(){if type corresponds, assign, make repetitive}
+
+------------------------------
+Login api
+calendar

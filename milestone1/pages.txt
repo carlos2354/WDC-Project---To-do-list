@@ -1,0 +1,19 @@
+landing page (of not signed in)
+homepage ( board | projects)
+profile
+sign up
+log in
+
+windows
+members (manager -> availability, tasks)
+availability (manager, users)
+tasks (manager, users)
+
+request link
+join link
+
+bulk add
+tasks (can have main task, then task subgroup) (if name matches tag, automatically put tag)
+group of tasks 
+
+calendar

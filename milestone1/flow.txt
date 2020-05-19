@@ -1,0 +1,16 @@
+una ay register page
+
+manager
+user
+
+if manager, create the first project -> tasks -> add ng team, either directly o magsend ng link
+
+if user, has a requests tab to accept into projects
+bootstrap
+
+features
+-kapag task completed by user, send a deliverable, photo, text, video. Manager will get a notification on inbox saying what task, with the deliverable, and accept o reject
+-choose color ng tasks. o ang mga projects ng manager
+project/space->tasks
+-kapag ng set ng task, send an email
+-completed tasks, uncompleeted tasks, inprogress tasks

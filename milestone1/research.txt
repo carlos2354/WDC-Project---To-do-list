@@ -1,0 +1,15 @@
+monday
+merong log in from the start, naggagawa ng project from the start.
+goes to a landing page where you can see your project
+visually appealing
+-merong shareable boards for collaboration
+-sa kada board ay may project, then may pulses
+-pwede ilipat ang pulse sa kabilang project
+sa pulse, pwedeng mag add ng column. ang column ay may choices, person, status o atbp. ang status column ay may preset values
+-pwedeng imove around ang columns
+-may sort ang columns
+-mag delete at nalalagay sa recycle bin
+-kapag nag set ng pulse, mag sesend ng notifications, at ang manager ay nakakatanggap ng notifications
+
+teamwork
+tasks have milestones

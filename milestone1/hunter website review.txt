@@ -1,0 +1,12 @@
+Mukha talagang modern ang homepage. Ito ay dahil sa laki ng white space, malaking slogan at malalaking button sa gitna. Pinapadali ang focus sa mata ko at naattract ako sa gitna ng white page. Ang top naman ay maganda din dahil clear siya. Nag iisa lang ang logo sa gilid at napapadali sa user ang makita to. Inaalagaan din ang user sa pamamagitan ng pagdugtongdugtong ng mga magkakaparehas sa function na button sa taas.
+
+Ang sign up page ay hindi nililito ang user. Ginalingan nito / gumaling ito sa ang pag-ask lang ng importanteng impormasyon such as name, email, mobile at password. Para naman mas hindi mahirapan ang user, binigay sa kanya ang option to sign up using social media.
+
+Sa manager site naman ay walang problemang intindihin. Ito ay gawa ng pagkasund sunod ng mga operational operations sa pagkababa at magkasama sama sila sa iisang tab.
+Ang schedule tab. Sa dami dami ng nakasulat ay nahirapan akong intindihin. Dahil daily task lang ang kailangan, mas sasaya ang teacher kapag isa o mas kunti lang na araw ang ipapakita at a time. Mas lalong hindi mahihirapan ang mga tagabasa na magbasa nito.
+Ang pagkalagay ng heart sa mga task na gustong gawin ay pinadali ang pagbasa dahil image lang ito.
+
+Ang user site info naman ay maliit at straight to the point (ang importanteng details lang ang tinatanong), hindi sagabal. Ang availability ay nakadagdag sa pagdaling basahin dahil sa sliders ang gamit nito at binawasan ang text.
+
+Sa mobile websites, inaccomodate ang liit ng phone sa laki ng buttons, walang sagabal sa pagcclick nito.
+ 
