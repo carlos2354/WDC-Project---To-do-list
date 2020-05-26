@@ -29,7 +29,7 @@
 
 <body>
   <div class="d-flex">
-    <!-- Sidebar -->
+    <!--Sidebar -->
     <div id="sidebar" class="d-flex flex-column inside-container pb-4 pl-2 pr-2 ">
       <!--header-->
       <div class="sidebar-header">
@@ -96,60 +96,78 @@
       <div class="content-manager-buttons row justify-content-end">
         <!--members button to modal-->
         <div class="col-2 text-right">
-          <button type="button" class="btn btn-jeans" data-toggle="modal" data-target="#membersModal">Members</button>
-          <div class="modal fade" id="membersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <button type="button" class="btn btn-round btn-jeans" data-toggle="modal" data-target="#membersModal">Members</button>
         </div>
-
         <!--tasks button to modal-->
         <div class="col-2 text-right">
-          <button type="button" class="btn btn-jeans" data-toggle="modal" data-target="#tasksModal">Tasks</button>
-          <div class="modal fade" id="tasksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+          <button type="button" class="btn btn-round btn-jeans" data-toggle="modal" data-target="#tasksModal">Tasks</button>
+        </div>
+      </div>
+
+      <!--members modal-->
+      <div class="modal fade" id="membersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Members</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              <div class="member-list d-flex">
+                <div class="col-1">
+                  <img clas="member-modal-image " src="" alt="">
                 </div>
-                <div class="modal-body">
-                  ...
+                <a href="#" class="flex-grow-1">Carlos Atis</a>
+                <div class="col-3 text-right">
+                  <button type="button" class="members-modal-button btn btn-outline-jeans btn-round btn-sm">Availability</button>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="col-2 text-right">
+                  <button type="button" class=" members-modal-button btn btn-outline-jeans btn-round btn-sm">Tasks</button>
                 </div>
+
               </div>
+            </div>
+            <div class="modal-footer">
             </div>
           </div>
         </div>
       </div>
 
+      <!--tasks modal-->
+      <div class="modal fade" id="tasksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              <div class="">
+                <p>Cleaning</p>
+              </div>
+              <div class="">
+                <div class="wrap-input100 validate-input" data-validate="Username is required">
+                  <input class="input100" type="text" name="username" placeholder="+ Add task">
+                  <span class="focus-input100"></span>
+                </div>
+              </div>
 
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!--Content Employee Buttons-->
       <div class="content-employee-buttons row justify-content-end">
         <!--My Availability to modal-->
         <div class="col-2 text-right">
-          <button type="button" class="btn btn-outline-jeans" data-toggle="modal" data-target="#myAvailabilityModal">My Availability</button>
+          <button type="button" class="btn btn-outline-jeans btn-round" data-toggle="modal" data-target="#myAvailabilityModal">My Availability</button>
           <div class="modal fade" id="myAvailabilityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -163,8 +181,6 @@
                   ...
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
               </div>
             </div>
@@ -173,29 +189,47 @@
 
         <!--My tasks button to modal-->
         <div class="col-2 text-right">
-          <button type="button" class="btn btn-outline-jeans" data-toggle="modal" data-target="#myTasksModal">My Tasks</button>
-          <div class="modal fade" id="myTasksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+          <button type="button" class="btn btn-outline-jeans btn-round" data-toggle="modal" data-target="#myTasksModal">My Tasks</button>
+        </div>
+      </div>
+
+      <!--My tasks modal-->
+      <div class="modal fade" id="myTasksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              <div class="d-flex">
+                <div class="flex-grow-1">
+                  <p>Cleaning</p>
+                </div>
+                <div class="col-3 task-performance text-center">
+                  <p>Good</p>
+                </div>
+                <div class="btn-group col-1">
+                  <button type="button" class="btn btn-sm btn-outline-jeans dropdown-toggle dropdown-toggle-split my-tasks-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
                   </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Great</a>
+                    <a class="dropdown-item" href="#">Good</a>
+                    <a class="dropdown-item" href="#">Not Good</a>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
       </div>
-
 
 
       <!--Content Table-->
@@ -242,6 +276,13 @@
             <input type="text" class="form-control" placeholder="Add Task" aria-label="" aria-describedby="basic-addon1">
           </div>
         </div>
+        <br>
+
+        <div class="wrap-input100 validate-input" data-validate="Username is required">
+          <input class="input100" type="text" name="username" placeholder="Username...">
+          <span class="focus-input100"></span>
+        </div>
+
       </div>
     </div>
   </div>
