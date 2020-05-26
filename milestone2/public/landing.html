@@ -1,27 +1,156 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <!-- bootstrap cdn -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- javascript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title></title>
+  <!-- bootstrap cdn -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- css style sheet -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900|Ubuntu&display=swap" rel="stylesheet">
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/e8b7ee603e.js" crossorigin="anonymous"></script>
+</head>
 
-  </head>
-  <body>
-  <div class="">
-    <nav>
-      <div class="">
-        logo
+<body>
+  <section id="my-navbar">
+    <!-- Nav Bar -->
+    <div class="">
+
+      <body>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+          <!-- Brand -->
+          <a class="navbar-brand Intix" href="">Roster</a>
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Collapse contents -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="navbar-item">
+                <a class="nav-link" href="#footer">Contact</a>
+              </li>
+              <li class="navbar-item">
+                <a class="nav-link" href="#pricing">About Us</a>
+              </li>
+              <li class="navbar-item">
+                <a class="nav-link" href="#cta">Login</a>
+              </li>
+            </ul>
+            <!-- Sign up button -->
+            <button type="button" class="btn btn-info">Create Free Account</button>
+          </div>
+        </nav>
+      </body>
+    </div>
+  </section>
+
+  <!-- Slogan-->
+  <section id="title">
+    <div class="container-fluid text-center ">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 id="header">Declutter your work and focus on the tasks that matter</h1>
+          <br>
+          <p id="title-p">Roster is a remote teamwork management system for busy, hardworking and productive teams</p>
+          <br>
+          <button type="button" class="btn btn-info">Create Free Account</button>
+        </div>
       </div>
-      <div class="">
+    </div>
+  </section>
 
+
+  <!-- Features-->
+  <section id="features">
+    <div class="container-fluid ">
+      <div class="row feature-row">
+        <div class="col-lg-6 feature-card my-auto text-feature-card">
+          <h2>Visualize your tasks</h2>
+          <br>
+          <p class="f-p">With our modular system, you can create a project and categorize
+            your tasks into descriptive and well defined categories. Do you have other
+            tasks thaat need your attention? Place them in a different and new project.</p>
+        </div>
+        <div class="col-lg-6 feature-card my-auto">
+          <img src="images/project-placeholder.png" alt="">
+        </div>
       </div>
-    </nav>
-  </div>
-  </body>
+      <div class="row feature-row2">
+        <div class="col-lg-6 feature-card my-auto order-sm-1 text-feature-card">
+          <h2>Understand the heart of your teammattes</h2>
+          <br>
+          <p class="f-p">Have a read of how well your teammates do the tasks you assigned.</p>
+        </div>
+        <div class="col-lg-6 feature-card my-auto order-sm-0">
+          <img src="images/task-placeholder.png" alt="">
+        </div>
+      </div>
+      <div class="row feature-row">
+        <div class="col-lg-6 feature-card my-auto text-feature-card">
+          <h2>See your teammates' availability</h2>
+          <br>
+          <p class="f-p">Spend your time creating tasks with useful time information</p>
+        </div>
+        <div class="col-lg-6 feature-card my-auto">
+          <img src="images/availability-video.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <h2 class="testimonial-header carousel-h2">I now enjoy my life from being organised</h2>
+          <img class="testimonial-img" src="images/dog-img.jpg" alt="dog-profile">
+          <em>Pebbles, New York</em>
+        </div>
+        <div class="carousel-item">
+          <h2 class="testimonial-header carousel-h2">My team used to be late on projects because we had delay in our communication. Now,
+            we save more time and get more work done.</h2>
+          <img class="testimonial-img" src="images/lady-img.jpg" alt="lady-profile">
+          <em>Beverly, Illinois</em>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+        <svg class="bi bi-chevron-compact-left" width="60" height="260" viewBox="0 0 16 16" fill="" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 01.223.67L6.56 8l2.888 5.776a.5.5 0 11-.894.448l-3-6a.5.5 0 010-.448l3-6a.5.5 0 01.67-.223z" clip-rule="evenodd" />
+        </svg>
+      </a>
+      <a class="carousel-control-next" style="color:black" href="#testimonial-carousel" role="button" data-slide="next">
+        <svg class="bi bi-chevron-compact-right" width="60" height="60" viewBox="0 0 16 16" fill="" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 01.671.223l3 6a.5.5 0 010 .448l-3 6a.5.5 0 11-.894-.448L9.44 8 6.553 2.224a.5.5 0 01.223-.671z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <i class="footer-fab fab fa-twitter"></i>
+    <i class="footer-fab fab fa-facebook-f"></i>
+    <i class="footer-fab fab fa-instagram"></i>
+    <i class="footer-fab fas fa-envelope"></i>
+    <p>terms and policies</p>
+  </footer>
+
+  <!-- javascript -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
 </html>
+
+<!-- <div class=" text-center pt-5 my-slogan">
+  <div class="container-fluid"> -->
+<!-- <h2>Complete your tasks individually or as a group</h2>
+  <br>
+  <p class="f-p">Alone or together, tasks will be cleared off your table</p>
+  <img src="images/group-task-placeholder.png" alt=""> -->

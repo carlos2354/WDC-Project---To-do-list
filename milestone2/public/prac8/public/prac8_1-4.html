@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prac 8</title>
+    <meta content="">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <style>.button-success {background: rgb(28, 184, 65);color: white;}</style>
+  </head>
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <body>
+
+    <div id="main">
+
+        <h1>My Blog</h1>
+        <hr />
+        <div id="newpost">
+            <h2>Add a post</h2>
+            <form class="pure-form" action="/users/addpost">
+
+                <fieldset class="pure-group">
+                    <input type="text" class="pure-input-1-2" placeholder="Blog post title" id="title">
+                    <textarea class="pure-input-1-2" placeholder="Blog Post Content" id="content"></textarea>
+                </fieldset>
+
+                <button type="button" class="pure-button pure-input-1-2 pure-button-primary" onclick="makepost()">make post</button>
+            </form>
+        </div>
+        <hr />
+        <div id="posts">
+            <h2>Current Posts</h2>
+            <form class="pure-form">
+                <button type="button" class="pure-button pure-input-1-2 pure-button-primary" v-on:click="showpost()">show all posts</button>
+            </form>
+
+        <div id="new">
+            </div>
+
+        </div>
+
+        <div v-for="(item, index) in posts" id= >
+            <h2>{{item.title}}</h2>
+            <p>{{item.content}}</p>
+        </div>
+
+        <div id="tcs" style="display: none;">
+            <h2>Terms and Conditions</h2>
+            <p>All your base are belong to us.</p>
+            <button class="pure-button button-success">Accept</button>
+        </div>
+
+    </div>
+
+
+  </body>
+      <script src="javascripts/1-4.js"></script>
+</html>

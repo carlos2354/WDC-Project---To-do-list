@@ -1,0 +1,63 @@
+/*button colored*/
+.btn-jeans {
+  color: #fff;
+  background-color: #22AEFF; /*jeans*/
+  border-color: #22AEFF;
+}
+
+.btn-jeans:hover {
+  color: #fff;
+  background-color: #1B8EDA;  /*hover*/
+  border-color: #108eda; /*focus border*/
+}
+
+.btn-jeans:focus, .btn-jeans.focus {
+  color: #fff;
+  background-color: #1B8EDA; /*hover*/
+  border-color: #108eda; /*focus border*/
+  box-shadow: 0 0 0 0.2rem rgba(34, 174, 255, 0.5);
+}
+
+.btn-jeans:active, .btn-jeans.active,
+.show>.btn-jeans.dropdown-toggle {
+  color: #fff;
+  background-color: #1B8EDA;  /*active*/
+  border-color: #108eda; /*active border*/
+}
+
+.btn-jeans:active:focus, .btn-jeans.active:focus,
+.show>.btn-jeans.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(34, 174, 255, 0.5);
+}
+
+/*button outline*/
+.btn-outline-jeans {
+  color: #22AEFF;
+  border-color: #22AEFF;
+  background-color: transparent;
+}
+
+.btn-outline-jeans:hover {
+  color: #fff;
+  background-color: #22AEFF;
+  border-color: #22AEFF;
+}
+
+.btn-outline-jeans:focus, .btn-outline-jeans.focus {
+  box-shadow: 0 0 0 0.2rem rgba(34, 174, 255, 0.5);
+}
+
+.btn-outline-jeans:active, .btn-outline-jeans.active, .btn-outline-jeans.dropdown-toggle.show {
+  color: #fff;
+  background-color: #22AEFF;
+  border-color: #22AEFF;
+}
+
+.btn-outline-jeans:active:focus, .btn-outline-jeans.active:focus, .btn-outline-jeans.dropdown-toggle.show:focus {
+  box-shadow: 0 0 0 0.2rem rgba(34, 174, 255, 0.5);
+}
+
+.btn-outline-jeans:disabled, .btn-outline-jeans.disabled {
+  color: #22AEFF;
+  background-color: transparent;
+}
