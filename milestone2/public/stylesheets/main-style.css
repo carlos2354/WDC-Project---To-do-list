@@ -149,18 +149,19 @@ textarea:focus, input:focus {
 .wrap-input100 {
   position: relative;
   border-bottom: 2px solid #dbdbdb;
+  padding-top: 10px;
 }
 
 .input100 {
   display: block;
   width: 100%;
   font-size: 1.1rem;
-  height: 1.2rem;
+  height: 2rem;
   background: transparent;
   font-family: 'Poppins', sans-serif;
   color: #555555;
   line-height: 1.2;
-  padding: 0 2px;
+  padding: 4px 2px 0;
 }
 
 .focus-input100 {
@@ -174,7 +175,7 @@ textarea:focus, input:focus {
 }
 
 .focus-input100::before {
-  /* content: "";
+  content: "";
   display: block;
   position: absolute;
   bottom: -2px;
@@ -182,7 +183,7 @@ textarea:focus, input:focus {
   width: 0;
   height: 2px;
   transition: all 0.4s;
-  background: rgba(34, 174, 255, 0.5); */
+  background: rgba(34, 174, 255, 0.5);
 }
 
 .input100:focus+.focus-input100::before {
