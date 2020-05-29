@@ -1,10 +1,12 @@
 var vuemain = new Vue({
-  el:'#main',
-  data:{
+  el: '#main',
+  data: {
 
   },
-  methods:{
-
+  methods: {
+    add_task_tag: function() {},
+    add_member: function() {},
+    submit_availability: function(){},
   }
 })
 
