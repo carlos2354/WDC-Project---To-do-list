@@ -1,3 +1,16 @@
+var vuemain = new Vue({
+  el:'#main',
+  data:{
+
+  },
+  methods:{
+
+  }
+})
+
+
+
+//---------------------sidebar collapse---------------------
 $(document).ready(function() {
   $('#sidebarCollapse').on('click', function() {
     $('#sidebar').toggleClass('active');
@@ -5,6 +18,8 @@ $(document).ready(function() {
 });
 
 
+
+//---------------------data table---------------------
 $(document).ready(function() {
   var t = $('#example').DataTable();
   var counter = 1;
@@ -27,14 +42,16 @@ $(document).ready(function() {
   $('#addRow').click();
 });
 
-//date datepicker
-$(document).ready(function(){
-		var date_input=$('input[name="date"]'); //our date input has the name "date"
-		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-		date_input.datepicker({
-			format: 'mm/dd/yyyy',
-			container: container,
-			todayHighlight: true,
-			autoclose: true,
-		})
-	});
+
+
+//---------------------data picker---------------------
+$(document).ready(function() {
+  var date_input = $('input[name="date"]'); //our date input has the name "date"
+  var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+  date_input.datepicker({
+    format: 'mm/dd/yyyy',
+    container: container,
+    todayHighlight: true,
+    autoclose: true,
+  })
+});

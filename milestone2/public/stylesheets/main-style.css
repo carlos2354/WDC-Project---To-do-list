@@ -32,7 +32,7 @@ p {
 }
 
 #sidebar .sidebar-header {
-  padding: 20px;
+  padding: 20px 20px 5px;
   background: white;
   border-bottom:solid;
   border-bottom-width: 1px;
