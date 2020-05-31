@@ -117,8 +117,15 @@ a, a:hover, a:focus {
 .members-modal-button{
   border-radius:20px;
 }
+
+.popover-body {
+    height: 100px;
+    overflow-y: auto;
+    white-space:pre-wrap;
+}
+
 /*-------------------------------content employee control---------------------------*/
-.content-employee-buttons {
+.content-header-2 {
   /* background-color: yellow; */
   padding: 10px 80px;
   border-bottom:solid;
