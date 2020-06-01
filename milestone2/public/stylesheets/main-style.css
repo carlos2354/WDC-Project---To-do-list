@@ -62,7 +62,14 @@ p {
 }
 
 .profile-img {
-  max-width: 50%;
+  width:100%;
+}
+
+.sidebar-img-container{
+  padding:0;
+  max-width: 30px;
+  overflow:hidden;
+  margin-right:2rem;
 }
 
 /*-------------------------------sidebar list---------------------------*/
@@ -119,9 +126,21 @@ a, a:hover, a:focus {
 }
 
 .popover-body {
-    height: 100px;
+    height: 200px;
     overflow-y: auto;
     white-space:pre-wrap;
+    font-size:1rem;
+}
+
+.profile-img-container{
+  padding:0;
+  max-width: 30px;
+  overflow:hidden;
+  margin-right:1rem;
+}
+
+.member-list{
+  padding:.3rem 0;
 }
 
 /*-------------------------------content employee control---------------------------*/
@@ -141,6 +160,18 @@ a, a:hover, a:focus {
   background-color:blue;
   color:white;
   border-radius: 10px;
+}
+
+.performance-list{
+  padding:.2rem 0;
+}
+
+.slider{
+  margin: 5px 0;
+}
+
+.ui-slider-range{
+  background-color: #22AEFF;
 }
 
 /*-------------------------------content table---------------------------*/

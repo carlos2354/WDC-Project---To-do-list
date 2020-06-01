@@ -22,66 +22,6 @@ var user = {
         name: "FHN",
         id: 0000005
     }],
-
-    task_performance =[{
-        performance: "Good"
-    }, {
-        performance: "Great",
-    }, {
-        performance: "Needs improvement"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }, {
-        performance: "Not set"
-    }
-    ],
-
-    availability: {
-        mon_s: "0800",
-        mon_e: "2000",
-        tue_s: "0800",
-        tue_e: "2000",
-        wed_s: "0800",
-        wed_e: "2000",
-        thu_s: "0800",
-        thu_e: "2000",
-        fri_s: "0800",
-        fri_e: "2000",
-        sat_s: "0000",
-        sat_e: "2000",
-        sun_s: "0000",
-        sun_e: "2000"
-    }
 },
 
 var board = {
@@ -91,6 +31,47 @@ var board = {
 },
 
 var task_tags = ["Cleaning", "Studying", "Research", "Documenting"],
+
+//below objects are if employee
+var task_performance = ["Good",
+    "Great",
+    "Unsatisfactory",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+    "Not Set",
+],
+
+var availability = {
+    mon_s: "0800",
+    mon_e: "2000",
+    tue_s: "0800",
+    tue_e: "2000",
+    wed_s: "0800",
+    wed_e: "2000",
+    thu_s: "0800",
+    thu_e: "2000",
+    fri_s: "0800",
+    fri_e: "2000",
+    sat_s: "0000",
+    sat_e: "2000",
+    sun_s: "0000",
+    sun_e: "2000"
+}
+
 
 var members = [{
     name: "Carlos Atis",
@@ -111,29 +92,29 @@ var members = [{
         sun_s: "0000",
         sun_e: "2000"
     },
-    performance: {
-        task1: "Good",
-        task2: "Great",
-        task3: "Great",
-        task4: "Not Set",
-        task5: "Not Set",
-        task6: "Not Set",
-        task7: "Not Set",
-        task8: "Not Set",
-        task9: "Not Set",
-        task10: "Not Set",
-        task11: "Not Set",
-        task12: "Not Set",
-        task13: "Not Set",
-        task14: "Not Set",
-        task15: "Not Set",
-        task16: "Not Set",
-        task17: "Not Set",
-        task18: "Not Set",
-        task19: "Not Set",
-        task20: "Not Set",
-    }
+    task_performance =["Good",
+        "Great",
+        "Unsatisfactory",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",      //15 length
+    ]
 },
+
 {
     name: "Huatao Dong",
     image: "somesource",
@@ -153,28 +134,27 @@ var members = [{
         sun_s: "0000",
         sun_e: "2000"
     },
-    performance: {
-        task1: "Good",
-        task2: "Great",
-        task3: "Great",
-        task4: "Not Set",
-        task5: "Not Set",
-        task6: "Not Set",
-        task7: "Not Set",
-        task8: "Not Set",
-        task9: "Not Set",
-        task10: "Not Set",
-        task11: "Not Set",
-        task12: "Not Set",
-        task13: "Not Set",
-        task14: "Not Set",
-        task15: "Not Set",
-        task16: "Not Set",
-        task17: "Not Set",
-        task18: "Not Set",
-        task19: "Not Set",
-        task20: "Not Set",
-    },
+    task_performance =["Good",
+        "Great",
+        "Unsatisfactory",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set",
+        "Not Set", //15 length
+    ],
 }]
 
 var tasks = [{

@@ -9,9 +9,6 @@
 
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <!-- Our Custom CSS -->
-  <link rel="stylesheet" href="stylesheets/main-style.css">
-  <link rel="stylesheet" href="stylesheets/custom-bootstrap.css">
 
   <!-- Data tables-->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
@@ -40,6 +37,134 @@
       color: red;
     }
   </style>
+
+  <!--jQuery javascript-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+
+  <!-- Slider-->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="stylesheets/main-style.css">
+  <link rel="stylesheet" href="stylesheets/custom-bootstrap.css">
+  <script>
+    $(function() {
+      $("#slidersun").slider({
+        values: [5, 10],
+        range: true,
+        min: 0,
+        max: 24,
+        step: 1,
+        slide: function(event, ui) {
+          var start = ui.values[0];
+          var end = ui.values[1];
+          $("#sundayfro").text((start) + ":00");
+          $("#sundayto").text("- " + end + ":00");
+        }
+      });
+
+      $("#slidermon").slider({
+        values: [5, 10],
+        range: true,
+        min: 0,
+        max: 24,
+        step: 1,
+        slide: function(event, ui) {
+          var start = ui.values[0];
+          var end = ui.values[1];
+          $("#mondayfro").text((start) + ":00");
+          $("#mondayto").text("-" + (end) + ":00");
+        }
+      });
+
+      $("#slidertue").slider({
+        values: [5, 10],
+        range: true,
+        min: 0,
+        max: 24,
+        step: 1,
+        slide: function(event, ui) {
+          var start = ui.values[0];
+          var end = ui.values[1];
+          $("#tuesdayfro").text((start) + ":00");
+          $("#tuesdayto").text("-" + (end) + ":00");
+        }
+      });
+
+      $("#sliderwed").slider({
+        values: [5, 10],
+        range: true,
+        min: 0,
+        max: 24,
+        step: 1,
+        slide: function(event, ui) {
+          var start = ui.values[0];
+          var end = ui.values[1];
+          $("#wednesdayfro").text((start) + ":00");
+          $("#wednesdayto").text("-" + (end) + ":00");
+        }
+      });
+
+      $("#sliderthu").slider({
+        values: [5, 10],
+        range: true,
+        min: 0,
+        max: 24,
+        step: 1,
+        slide: function(event, ui) {
+          var start = ui.values[0];
+          var end = ui.values[1];
+          $("#thursdayfro").text((start) + ":00");
+          $("#thursdayto").text("-" + (end) + ":00");
+        }
+      });
+
+      $("#sliderfri").slider({
+        values: [5, 10],
+        range: true,
+        min: 0,
+        max: 24,
+        step: 1,
+        slide: function(event, ui) {
+          var start = ui.values[0];
+          var end = ui.values[1];
+          $("#fridayfro").text((start) + ":00");
+          $("#fridayto").text("-" + (end) + ":00");
+        }
+      });
+
+      $("#slidersat").slider({
+        values: [5, 10],
+        range: true,
+        min: 0,
+        max: 24,
+        step: 1,
+        slide: function(event, ui) {
+          var start = ui.values[0];
+          var end = ui.values[1];
+          $("#saturdayfro").text((start) + ":00");
+          $("#saturdayto").text("-" + (end) + ":00");
+        }
+      });
+
+      $("#sundayfro").text("00"); //kuung ano ang nakalagay sa js
+      $("#sundayto").text("00");
+      $("#mondayfro").text("00"); //kuung ano ang nakalagay sa js
+      $("#mondayto").text("00");
+      $("#tuesdayfro").text("00"); //kuung ano ang nakalagay sa js
+      $("#tuesdayto").text("00");
+      $("#wednesdayfro").text("00"); //kuung ano ang nakalagay sa js
+      $("#wednesdayto").text("00");
+      $("#thursdayfro").text("00"); //kuung ano ang nakalagay sa js
+      $("#thursdayto").text("00");
+      $("#fridayfro").text("00"); //kuung ano ang nakalagay sa js
+      $("#fridayto").text("00");
+      $("#saturdayfro").text("00"); //kuung ano ang nakalagay sa js
+      $("#saturdayto").text("00");
+    });
+  </script>
 </head>
 
 <body>
@@ -63,11 +188,11 @@
 
       <!--Profile-->
       <div class="d-flex no-gutter profile-container mt-auto ">
-        <div class="col-4">
-          <a href="#"> <img src="images/pngfuel.com.png" class="profile-img" alt=""></a>
+        <div class="col-4 sidebar-img-container">
+          <a href="#"> <img v-bind:src="user.profilePicture" class="profile-img" alt=""></a>
         </div>
         <div class="col-8">
-          <a href="#">Carlos Atis</a>
+          <a href="#">{{user.name}}</a>
         </div>
       </div>
     </div>
@@ -89,19 +214,19 @@
       <!--Content header row(1/2)-->
       <div class="content-header d-flex align-items-baseline">
         <div class="text-center pr-4  header">
-          <h1 class="">Web Database</h1>
+          <h1 class="">{{board.name}}</h1>
         </div>
 
         <!--manager buttons-->
         <div class="row ml-auto">
-            <!--members button to modal-->
-            <div class="col-6 text-right">
-              <button type="button" class="btn btn-round btn-outline-jeans" data-toggle="modal" data-target="#membersModal">Members</button>
-            </div>
-            <!--tasks button to modal-->
-            <div class="col-6 text-right">
-              <button type="button" class="btn btn-round btn-outline-jeans" data-toggle="modal" data-target="#tasksModal">Tasks</button>
-            </div>
+          <!--members button to modal-->
+          <div class="col-6 text-right">
+            <button type="button" class="btn btn-round btn-outline-jeans" data-toggle="modal" data-target="#membersModal">Members</button>
+          </div>
+          <!--tasks button to modal-->
+          <div class="col-6 text-right">
+            <button type="button" class="btn btn-round btn-outline-jeans" data-toggle="modal" data-target="#tasksModal">Tasks</button>
+          </div>
         </div>
       </div>
 
@@ -147,17 +272,32 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body d-flex flex-column">
+              <!--manager own row-->
               <div class="member-list d-flex">
-                <div class="col-1">
-                  <img clas="member-modal-image " src="" alt="">
+                <div class="col-1 profile-img-container align-items-center">
+                  <img class="profile-img" v-bind:src="board.manager_image" alt="">
                 </div>
-                <a href="#" class="flex-grow-1">Carlos Atis</a>
+                <a href="#" class="flex-grow-1">{{board.manager_name}}</a>
                 <div class="col-3 text-right">
-                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover" title="Availability" data-content="And here's some amazing content. It's very engaging. Right?">Availability</button>
+                  <i class="fas fa-crown"></i>
                 </div>
+              </div>
+              <!--members row-->
+              <div class="member-list d-flex" v-for="(item,index) in members">
+                <div class="col-1 profile-img-container align-items-center" >
+                  <img class="profile-img" v-bind:src="item.image" alt="">
+                </div>
+
+                <a href="#" class="flex-grow-1">{{item.name}}</a>
+
                 <div class="col-3 text-right">
-                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover" title="Performance" data-content="And hsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssere's some amazing content. It's very engaging. Right?">Performance</button>
+                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover" v-bind:data-content="'Sunday: '  + item.availability.sun_s + ' - ' + item.availability.sun_e + '\n' +'Monday: '  + item.availability.mon_s + ' - ' + item.availability.mon_e + '\n' + 'Tuesday: '  + item.availability.tue_s + ' - ' + item.availability.tue_e + '\n' +'Wednesday: '  + item.availability.wed_s + ' - ' + item.availability.wed_e + '\n' +'Thursday: '  + item.availability.thu_s + ' - ' + item.availability.thu_e + '\n' +'Friday: '  + item.availability.fri_s + ' - ' + item.availability.fri_e + '\n' +'Saturday: '  + item.availability.sat_s + ' - ' + item.availability.sat_e + '\n'" title="Availability">Availability</button>
+                </div>
+                
+                <div class="col-3 text-right">
+                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round"  data-toggle="popover" title="Performance">Performance</button>
                 </div>
               </div>
               <div class="wrap-input100 validate-input" data-validate="Username is required">
@@ -182,8 +322,8 @@
               </button>
             </div>
             <div class="modal-body d-flex flex-column">
-              <div class="">
-                <p>Cleaning</p>
+              <div class="" v-for="item in task_tags">
+                <p>{{item}}</p>
               </div>
               <div class="">
                 <div class="wrap-input100 validate-input" data-validate="Username is required">
@@ -210,7 +350,48 @@
             </div>
             <div class="modal-body d-flex">
               <div class="col-6">
-
+                <p>
+                  Sunday
+                  <span id="sundayfro" style="border:0; font-weight:bold;"></span>
+                  <span id="sundayto" style="border:0; font-weight:bold; "></span>
+                </p>
+                <div class="slider" id="slidersun"></div>
+                <p>
+                  Monday
+                  <span id="mondayfro" style="border:0; font-weight:bold;"></span>
+                  <span id="mondayto" style="border:0; font-weight:bold; "></span>
+                </p>
+                <div class="slider" id="slidermon"></div>
+                <p>
+                  Tuesday
+                  <span id="tuesdayfro" style="border:0; font-weight:bold;"></span>
+                  <span id="tuesdayto" style="border:0; font-weight:bold; "></span>
+                </p>
+                <div class="slider" id="slidertue"></div>
+                <p>
+                  Wednesday
+                  <span id="wednesdayfro" style="border:0; font-weight:bold;"></span>
+                  <span id="wednesdayto" style="border:0; font-weight:bold; "></span>
+                </p>
+                <div class="slider" id="sliderwed"></div>
+                <p>
+                  Thursday
+                  <span id="thursdayfro" style="border:0; font-weight:bold;"></span>
+                  <span id="thursdayto" style="border:0; font-weight:bold; "></span>
+                </p>
+                <div class="slider" id="sliderthu"></div>
+                <p>
+                  Friday
+                  <span id="fridayfro" style="border:0; font-weight:bold;"></span>
+                  <span id="fridayto" style="border:0; font-weight:bold; "></span>
+                </p>
+                <div class="slider" id="sliderfri"></div>
+                <p>
+                  Saturday
+                  <span id="saturdayfro" style="border:0; font-weight:bold;"></span>
+                  <span id="saturdayto" style="border:0; font-weight:bold; "></span>
+                </p>
+                <div class="slider" id="slidersat"></div>
               </div>
               <div class="col-6 d-flex">
                 <form class="form-horizontal d-flex" method="post">
@@ -248,24 +429,26 @@
               </button>
             </div>
             <div class="modal-body d-flex flex-column">
-              <div class="d-flex">
-                <div class="flex-grow-1">
-                  <p>Cleaning</p>
-                </div>
-                <div class="col-3 task-performance text-center">
-                  <p>Good</p>
-                </div>
-                <div class="btn-group col-1">
-                  <button type="button" class="btn btn-sm btn-outline-jeans dropdown-toggle dropdown-toggle-split my-tasks-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Great</a>
-                    <a class="dropdown-item" href="#">Good</a>
-                    <a class="dropdown-item" href="#">Not Good</a>
+              <template id="" v-for="(item,index) in task_tags">
+                <div class="d-flex performance-list">
+                  <div class="flex-grow-1">
+                    <p>{{item}}</p>
+                  </div>
+                  <div class="col-4 task-performance text-center">
+                    <p>{{task_performance[index]}}</p>
+                  </div>
+                  <div class="btn-group col-1">
+                    <button type="button" class="btn btn-sm btn-outline-jeans dropdown-toggle dropdown-toggle-split my-tasks-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Great</a>
+                      <a class="dropdown-item" href="#">Good</a>
+                      <a class="dropdown-item" href="#">Not Good</a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </template>
             </div>
             <div class="modal-footer">
             </div>
@@ -291,24 +474,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Research</td>
-              <td>Study</td>
-              <td>11:00 - 14:00</td>
-              <td>Complete</td>
-              <td>Ofel</td>
-              <td>High</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Design</td>
-              <td>Document</td>
-              <td>11:00 - 14:00</td>
-              <td>Ongoing</td>
-              <td>Caloy</td>
-              <td>High</td>
-            </tr>
+
+            <template id="" v-for="(item,index) in tasks">
+              <tr>
+                <td>{{item.ticket}}</td>
+                <td>{{item.task_name}}</td>
+                <td>{{item.task_tag}}</td>
+                <td>{{item.start_time}} - {{item.end_time}}</td>
+                <td>{{item.status}}</td>
+                <td> <span v-for="persons in item.person">{{persons}} </span> </td>
+                <td>{{item.priority}}</td>
+              </tr>
+            </template>
         </table>
 
         <!--add task-->
@@ -327,8 +504,6 @@
 
 
 
-  <!--jQuery javascript-->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
   <!--Bootstrap javascript-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -352,6 +527,7 @@
 
   <!--My custom javascript-->
   <script src="javascripts/main-js.js"></script>
+
 </body>
 
 </html>
