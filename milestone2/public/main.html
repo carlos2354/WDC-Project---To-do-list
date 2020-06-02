@@ -52,7 +52,7 @@
   <script>
     $(function() {
       $("#slidersun").slider({
-        values: [5, 10],
+        values: [parseInt(my_availability.sun_s[0] + my_availability.sun_s[1]), parseInt(my_availability.sun_e[0] + my_availability.sun_e[1])],
         range: true,
         min: 0,
         max: 24,
@@ -66,7 +66,7 @@
       });
 
       $("#slidermon").slider({
-        values: [5, 10],
+        values: [parseInt(my_availability.mon_s[0] + my_availability.mon_s[1]), parseInt(my_availability.mon_e[0] + my_availability.mon_e[1])],
         range: true,
         min: 0,
         max: 24,
@@ -80,7 +80,7 @@
       });
 
       $("#slidertue").slider({
-        values: [5, 10],
+        values: [parseInt(my_availability.tue_s[0] + my_availability.tue_s[1]), parseInt(my_availability.tue_e[0] + my_availability.tue_e[1])],
         range: true,
         min: 0,
         max: 24,
@@ -94,7 +94,7 @@
       });
 
       $("#sliderwed").slider({
-        values: [5, 10],
+        values: [parseInt(my_availability.wed_s[0] + my_availability.wed_s[1]), parseInt(my_availability.wed_e[0] + my_availability.wed_e[1])],
         range: true,
         min: 0,
         max: 24,
@@ -108,7 +108,7 @@
       });
 
       $("#sliderthu").slider({
-        values: [5, 10],
+        values: [parseInt(my_availability.thu_s[0] + my_availability.thu_s[1]), parseInt(my_availability.thu_e[0] + my_availability.thu_e[1])],
         range: true,
         min: 0,
         max: 24,
@@ -122,7 +122,7 @@
       });
 
       $("#sliderfri").slider({
-        values: [5, 10],
+        values: [parseInt(my_availability.fri_s[0] + my_availability.fri_s[1]), parseInt(my_availability.fri_e[0] + my_availability.fri_e[1])],
         range: true,
         min: 0,
         max: 24,
@@ -136,7 +136,7 @@
       });
 
       $("#slidersat").slider({
-        values: [5, 10],
+        values: [parseInt(my_availability.sat_s[0] + my_availability.sat_s[1]), parseInt(my_availability.sat_e[0] + my_availability.sat_e[1])],
         range: true,
         min: 0,
         max: 24,
@@ -149,20 +149,20 @@
         }
       });
 
-      $("#sundayfro").text("00"); //kuung ano ang nakalagay sa js
-      $("#sundayto").text("00");
-      $("#mondayfro").text("00"); //kuung ano ang nakalagay sa js
-      $("#mondayto").text("00");
-      $("#tuesdayfro").text("00"); //kuung ano ang nakalagay sa js
-      $("#tuesdayto").text("00");
-      $("#wednesdayfro").text("00"); //kuung ano ang nakalagay sa js
-      $("#wednesdayto").text("00");
-      $("#thursdayfro").text("00"); //kuung ano ang nakalagay sa js
-      $("#thursdayto").text("00");
-      $("#fridayfro").text("00"); //kuung ano ang nakalagay sa js
-      $("#fridayto").text("00");
-      $("#saturdayfro").text("00"); //kuung ano ang nakalagay sa js
-      $("#saturdayto").text("00");
+      $("#sundayfro").text(my_availability.sun_s); //kuung ano ang nakalagay sa js
+      $("#sundayto").text(my_availability.sun_e);
+      $("#mondayfro").text(my_availability.mon_s); //kuung ano ang nakalagay sa js
+      $("#mondayto").text(my_availability.mon_e);
+      $("#tuesdayfro").text(my_availability.tue_s); //kuung ano ang nakalagay sa js
+      $("#tuesdayto").text(my_availability.tue_e);
+      $("#wednesdayfro").text(my_availability.wed_s); //kuung ano ang nakalagay sa js
+      $("#wednesdayto").text(my_availability.wed_e);
+      $("#thursdayfro").text(my_availability.thu_s); //kuung ano ang nakalagay sa js
+      $("#thursdayto").text(my_availability.thu_e);
+      $("#fridayfro").text(my_availability.fri_s); //kuung ano ang nakalagay sa js
+      $("#fridayto").text(my_availability.fri_e);
+      $("#saturdayfro").text(my_availability.sat_s); //kuung ano ang nakalagay sa js
+      $("#saturdayto").text(my_availability.sat_e);
     });
   </script>
 </head>
@@ -286,26 +286,27 @@
               </div>
               <!--members row-->
               <div class="member-list d-flex" v-for="(item,index) in members">
-                <div class="col-1 profile-img-container align-items-center" >
+                <div class="col-1 profile-img-container align-items-center">
                   <img class="profile-img" v-bind:src="item.image" alt="">
                 </div>
 
                 <a href="#" class="flex-grow-1">{{item.name}}</a>
 
                 <div class="col-3 text-right">
-                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover" v-bind:data-content="'Sunday: '  + item.availability.sun_s + ' - ' + item.availability.sun_e + '\n' +'Monday: '  + item.availability.mon_s + ' - ' + item.availability.mon_e + '\n' + 'Tuesday: '  + item.availability.tue_s + ' - ' + item.availability.tue_e + '\n' +'Wednesday: '  + item.availability.wed_s + ' - ' + item.availability.wed_e + '\n' +'Thursday: '  + item.availability.thu_s + ' - ' + item.availability.thu_e + '\n' +'Friday: '  + item.availability.fri_s + ' - ' + item.availability.fri_e + '\n' +'Saturday: '  + item.availability.sat_s + ' - ' + item.availability.sat_e + '\n'" title="Availability">Availability</button>
+                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover"
+                    v-bind:data-content="'Sunday: '  + item.availability.sun_s + ' - ' + item.availability.sun_e + '\n' +'Monday: '  + item.availability.mon_s + ' - ' + item.availability.mon_e + '\n' + 'Tuesday: '  + item.availability.tue_s + ' - ' + item.availability.tue_e + '\n' +'Wednesday: '  + item.availability.wed_s + ' - ' + item.availability.wed_e + '\n' +'Thursday: '  + item.availability.thu_s + ' - ' + item.availability.thu_e + '\n' +'Friday: '  + item.availability.fri_s + ' - ' + item.availability.fri_e + '\n' +'Saturday: '  + item.availability.sat_s + ' - ' + item.availability.sat_e + '\n'"
+                    title="Availability">Availability</button>
                 </div>
-                
+
                 <div class="col-3 text-right">
-                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round"  data-toggle="popover" title="Performance">Performance</button>
+                  <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover" v-bind:data-content="item.task_performance_string" title="Performance">Performance</button>
                 </div>
               </div>
               <div class="wrap-input100 validate-input" data-validate="Username is required">
-                <input class="input100" type="text" name="task" placeholder="+ Add member">
+                <input class="input100" type="text" name="task" id="member-email-input" placeholder="Member email">
                 <span class="focus-input100"></span>
               </div>
-            </div>
-            <div class="modal-footer">
+              <button type="button" name="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_member()">+ Add member</button>
             </div>
           </div>
         </div>
@@ -322,17 +323,16 @@
               </button>
             </div>
             <div class="modal-body d-flex flex-column">
-              <div class="" v-for="item in task_tags">
+              <div class="" v-for="item in task_types">
                 <p>{{item}}</p>
               </div>
               <div class="">
                 <div class="wrap-input100 validate-input" data-validate="Username is required">
-                  <input class="input100" type="text" name="task" placeholder="+ Add task">
+                  <input class="input100" type="text" name="task" id="task-type-input" placeholder="Task type">
                   <span class="focus-input100"></span>
                 </div>
               </div>
-            </div>
-            <div class="modal-footer">
+              <button type="button" name="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_task_type()">+ Add task type</button>
             </div>
           </div>
         </div>
@@ -340,7 +340,7 @@
 
       <!--modal(3/4) My availability Modal-->
       <div class="modal fade" id="myAvailabilityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">My Availability</h5>
@@ -348,71 +348,53 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body d-flex">
-              <div class="col-6">
-                <p>
-                  Sunday
-                  <span id="sundayfro" style="border:0; font-weight:bold;"></span>
-                  <span id="sundayto" style="border:0; font-weight:bold; "></span>
-                </p>
-                <div class="slider" id="slidersun"></div>
-                <p>
-                  Monday
-                  <span id="mondayfro" style="border:0; font-weight:bold;"></span>
-                  <span id="mondayto" style="border:0; font-weight:bold; "></span>
-                </p>
-                <div class="slider" id="slidermon"></div>
-                <p>
-                  Tuesday
-                  <span id="tuesdayfro" style="border:0; font-weight:bold;"></span>
-                  <span id="tuesdayto" style="border:0; font-weight:bold; "></span>
-                </p>
-                <div class="slider" id="slidertue"></div>
-                <p>
-                  Wednesday
-                  <span id="wednesdayfro" style="border:0; font-weight:bold;"></span>
-                  <span id="wednesdayto" style="border:0; font-weight:bold; "></span>
-                </p>
-                <div class="slider" id="sliderwed"></div>
-                <p>
-                  Thursday
-                  <span id="thursdayfro" style="border:0; font-weight:bold;"></span>
-                  <span id="thursdayto" style="border:0; font-weight:bold; "></span>
-                </p>
-                <div class="slider" id="sliderthu"></div>
-                <p>
-                  Friday
-                  <span id="fridayfro" style="border:0; font-weight:bold;"></span>
-                  <span id="fridayto" style="border:0; font-weight:bold; "></span>
-                </p>
-                <div class="slider" id="sliderfri"></div>
-                <p>
-                  Saturday
-                  <span id="saturdayfro" style="border:0; font-weight:bold;"></span>
-                  <span id="saturdayto" style="border:0; font-weight:bold; "></span>
-                </p>
-                <div class="slider" id="slidersat"></div>
-              </div>
-              <div class="col-6 d-flex">
-                <form class="form-horizontal d-flex" method="post">
-                  <div class="">
-                    <i class="fa fa-calendar">
-                    </i><label class="control-label requiredField" for="date">
-                      Date<span class="asteriskField">* </span>
-                    </label>
-                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
-                  </div>
-                  <div class="mt-auto">
-                    <div class="col-sm-10 col-sm-offset-2 ">
-                      <button class="btn btn-jeans btn-round " name="submit" type="submit">
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+            <div class="modal-body" style="padding:1rem 3rem">
+              <p>
+                Sunday
+                <span id="sundayfro" style="border:0; font-weight:bold;"></span>
+                <span id="sundayto" style="border:0; font-weight:bold; "></span>
+              </p>
+              <div class="slider" id="slidersun"></div>
+              <p>
+                Monday
+                <span id="mondayfro" style="border:0; font-weight:bold;"></span>
+                <span id="mondayto" style="border:0; font-weight:bold; "></span>
+              </p>
+              <div class="slider" id="slidermon"></div>
+              <p>
+                Tuesday
+                <span id="tuesdayfro" style="border:0; font-weight:bold;"></span>
+                <span id="tuesdayto" style="border:0; font-weight:bold; "></span>
+              </p>
+              <div class="slider" id="slidertue"></div>
+              <p>
+                Wednesday
+                <span id="wednesdayfro" style="border:0; font-weight:bold;"></span>
+                <span id="wednesdayto" style="border:0; font-weight:bold; "></span>
+              </p>
+              <div class="slider" id="sliderwed"></div>
+              <p>
+                Thursday
+                <span id="thursdayfro" style="border:0; font-weight:bold;"></span>
+                <span id="thursdayto" style="border:0; font-weight:bold; "></span>
+              </p>
+              <div class="slider" id="sliderthu"></div>
+              <p>
+                Friday
+                <span id="fridayfro" style="border:0; font-weight:bold;"></span>
+                <span id="fridayto" style="border:0; font-weight:bold; "></span>
+              </p>
+              <div class="slider" id="sliderfri"></div>
+              <p>
+                Saturday
+                <span id="saturdayfro" style="border:0; font-weight:bold;"></span>
+                <span id="saturdayto" style="border:0; font-weight:bold; "></span>
+              </p>
+              <div class="slider" id="slidersat"></div>
+
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex flex-column">
+              <button type="button" name="button" class="text-center btn btn-jeans button-margin btn-round " v-on:click="save_availability()"style="width:80%;">Save availability</button>
             </div>
           </div>
         </div>
@@ -429,13 +411,13 @@
               </button>
             </div>
             <div class="modal-body d-flex flex-column">
-              <template id="" v-for="(item,index) in task_tags">
+              <template id="" v-for="(item,index) in task_types">
                 <div class="d-flex performance-list">
                   <div class="flex-grow-1">
                     <p>{{item}}</p>
                   </div>
-                  <div class="col-4 task-performance text-center">
-                    <p>{{task_performance[index]}}</p>
+                  <div class="col-4 text-center" v-bind:class="task_performance[index].color">
+                    <p>{{task_performance[index].performance}}</p>
                   </div>
                   <div class="btn-group col-1">
                     <button type="button" class="btn btn-sm btn-outline-jeans dropdown-toggle dropdown-toggle-split my-tasks-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -449,8 +431,6 @@
                   </div>
                 </div>
               </template>
-            </div>
-            <div class="modal-footer">
             </div>
           </div>
         </div>
@@ -466,7 +446,7 @@
             <tr>
               <th>Ticket #</th>
               <th>Task Name</th>
-              <th>Task Tag</th>
+              <th>Task Type</th>
               <th>Time</th>
               <th>Status</th>
               <th>Person</th>
@@ -479,7 +459,7 @@
               <tr>
                 <td>{{item.ticket}}</td>
                 <td>{{item.task_name}}</td>
-                <td>{{item.task_tag}}</td>
+                <td>{{item.task_type}}</td>
                 <td>{{item.start_time}} - {{item.end_time}}</td>
                 <td>{{item.status}}</td>
                 <td> <span v-for="persons in item.person">{{persons}} </span> </td>
