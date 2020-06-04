@@ -11,34 +11,9 @@
 
   <!-- Data tables-->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"> -->
-
-  <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
-  <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
   <!--Font Awesome (added because you use icons in your prepend/append)-->
   <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
-
-  <!-- Inline CSS based on choices in "Settings" tab -->
-  <style>
-    .bootstrap-iso .formden_header h2,
-    .bootstrap-iso .formden_header p,
-    .bootstrap-iso form {
-      font-family: Arial, Helvetica, sans-serif;
-      color: black
-    }
-
-    .bootstrap-iso form button,
-    .bootstrap-iso form button:hover {
-      color: white !important;
-    }
-
-    .asteriskField {
-      color: red;
-    }
-  </style>
-
 
   <!--jQuery javascript-->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
@@ -51,26 +26,27 @@
   <!-- Our Custom CSS -->
   <link rel="stylesheet" href="stylesheets/main-style.css">
   <link rel="stylesheet" href="stylesheets/custom-bootstrap.css">
+
   <script>
     $(function() {
       $("#slidersun").slider({
-        values: [parseInt(vuemain.availability.sun_s[0] + vuemain.availability.sun_s[1]), parseInt(vuemain.availability.sun_e[0] + vuemain.availability.sun_e[1])],
+        values: [vuemain.availability.sun_s, vuemain.availability.sun_e],
         range: true,
         min: 0,
         max: 24,
         step: 1,
         slide: function(event, ui) {
-          vuemain.availability.sun_s = ui.values[0];
-          vuemain.availability.sun_e = ui.values[1];
-          var start = vuemain.availability.sun_s;
-          var end = vuemain.availability.sun_e;
+          var start = ui.values[0];
+          var end = ui.values[1];
+          vuemain.availability.sun_s = start;
+          vuemain.availability.sun_e = end;
           $("#sundayfro").text((start) + ":00");
           $("#sundayto").text("- " + end + ":00");
         }
       });
 
       $("#slidermon").slider({
-        values: [parseInt(vuemain.availability.mon_s[0] + vuemain.availability.mon_s[1]), parseInt(vuemain.availability.mon_e[0] + vuemain.availability.mon_e[1])],
+        values:[vuemain.availability.mon_s, vuemain.availability.mon_e],
         range: true,
         min: 0,
         max: 24,
@@ -78,13 +54,15 @@
         slide: function(event, ui) {
           var start = ui.values[0];
           var end = ui.values[1];
+          vuemain.availability.mon_s = start;
+          vuemain.availability.mon_e = end;
           $("#mondayfro").text((start) + ":00");
-          $("#mondayto").text("-" + (end) + ":00");
+          $("#mondayto").text("- " + (end) + ":00");
         }
       });
 
       $("#slidertue").slider({
-        values: [parseInt(vuemain.availability.tue_s[0] + vuemain.availability.tue_s[1]), parseInt(vuemain.availability.tue_e[0] + vuemain.availability.tue_e[1])],
+        values: [vuemain.availability.tue_s, vuemain.availability.tue_e],
         range: true,
         min: 0,
         max: 24,
@@ -92,13 +70,15 @@
         slide: function(event, ui) {
           var start = ui.values[0];
           var end = ui.values[1];
+          vuemain.availability.tue_s = start;
+          vuemain.availability.tue_e = end;
           $("#tuesdayfro").text((start) + ":00");
-          $("#tuesdayto").text("-" + (end) + ":00");
+          $("#tuesdayto").text("- " + (end) + ":00");
         }
       });
 
       $("#sliderwed").slider({
-        values: [parseInt(vuemain.availability.wed_s[0] + vuemain.availability.wed_s[1]), parseInt(vuemain.availability.wed_e[0] + vuemain.availability.wed_e[1])],
+        values: [vuemain.availability.wed_s, vuemain.availability.wed_e],
         range: true,
         min: 0,
         max: 24,
@@ -106,13 +86,15 @@
         slide: function(event, ui) {
           var start = ui.values[0];
           var end = ui.values[1];
+          vuemain.availability.wed_s = start;
+          vuemain.availability.wed_e = end;
           $("#wednesdayfro").text((start) + ":00");
-          $("#wednesdayto").text("-" + (end) + ":00");
+          $("#wednesdayto").text("- " + (end) + ":00");
         }
       });
 
       $("#sliderthu").slider({
-        values: [parseInt(vuemain.availability.thu_s[0] + vuemain.availability.thu_s[1]), parseInt(vuemain.availability.thu_e[0] + vuemain.availability.thu_e[1])],
+        values: [vuemain.availability.thu_s, vuemain.availability.thu_e],
         range: true,
         min: 0,
         max: 24,
@@ -120,13 +102,15 @@
         slide: function(event, ui) {
           var start = ui.values[0];
           var end = ui.values[1];
+          vuemain.availability.thu_s = start;
+          vuemain.availability.thu_e = end;
           $("#thursdayfro").text((start) + ":00");
-          $("#thursdayto").text("-" + (end) + ":00");
+          $("#thursdayto").text("- " + (end) + ":00");
         }
       });
 
       $("#sliderfri").slider({
-        values: [parseInt(vuemain.availability.fri_s[0] + vuemain.availability.fri_s[1]), parseInt(vuemain.availability.fri_e[0] + vuemain.availability.fri_e[1])],
+        values:[vuemain.availability.fri_s, vuemain.availability.fri_e],
         range: true,
         min: 0,
         max: 24,
@@ -134,13 +118,15 @@
         slide: function(event, ui) {
           var start = ui.values[0];
           var end = ui.values[1];
+          vuemain.availability.fri_s = start;
+          vuemain.availability.fri_e = end;
           $("#fridayfro").text((start) + ":00");
-          $("#fridayto").text("-" + (end) + ":00");
+          $("#fridayto").text("- " + (end) + ":00");
         }
       });
 
       $("#slidersat").slider({
-        values: [parseInt(vuemain.availability.sat_s[0] + vuemain.availability.sat_s[1]), parseInt(vuemain.availability.sat_e[0] + vuemain.availability.sat_e[1])],
+        values:[vuemain.availability.sat_s, vuemain.availability.sat_e],
         range: true,
         min: 0,
         max: 24,
@@ -148,8 +134,10 @@
         slide: function(event, ui) {
           var start = ui.values[0];
           var end = ui.values[1];
+          vuemain.availability.sat_s = start;
+          vuemain.availability.sat_e = end;
           $("#saturdayfro").text((start) + ":00");
-          $("#saturdayto").text("-" + (end) + ":00");
+          $("#saturdayto").text("- " + (end) + ":00");
         }
       });
 
@@ -162,8 +150,8 @@
         slide: function(event, ui) {
           var start = ui.values[0];
           var end = ui.values[1];
-          $("#task_start").text((start) + ":00");
-          $("#task_end").text("-" + (end) + ":00");
+          $("#task_start").text(start);
+          $("#task_end").text(end);
         }
       });
     });
@@ -195,7 +183,7 @@
           <a href="#" v-on:click="goto_profile()"> <img v-bind:src="user.info.profilePicture" class="profile-img" alt=""></a>
         </div>
         <div class="col-8">
-          <a href="#" v-on:click="goto_profile()">{{user.info.name}}</a>
+          <a href="#" v-on:click="goto_profile()">{{user.info.first_name}} {{user.info.last_name}}</a>
         </div>
       </div>
     </div>
@@ -206,9 +194,8 @@
 
     <!-- Page Content -->
     <div id="content" class="container-fluid">
+      <!--page table-->
       <div v-bind:class="{ page_table: user.table_display}">
-
-
         <!--sidebar toggle-->
         <div class="">
           <button type="button" class="btn btn-jeans sidebarCollapse">
@@ -235,7 +222,6 @@
             </div>
           </div>
         </div>
-
 
         <!--Content header row(2/2)-->
         <div class="content-header-2 d-flex align-items-baseline ">
@@ -298,11 +284,11 @@
                     <img class="profile-img" v-bind:src="item.image" alt="">
                   </div>
 
-                  <a href="#" v-on:click()="get_profile_id()" class="flex-grow-1">{{item.name}}</a>
+                  <a href="#" v-on:click()="get_profile_id()" class="flex-grow-1">{{item.first_name}} {{item.last_name}}</a>
 
                   <div class="col-3 text-right">
                     <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover"
-                      v-bind:data-content="'Sunday: '  + item.availability.sun_s + ' - ' + item.availability.sun_e + '\n' +'Monday: '  + item.availability.mon_s + ' - ' + item.availability.mon_e + '\n' + 'Tuesday: '  + item.availability.tue_s + ' - ' + item.availability.tue_e + '\n' +'Wednesday: '  + item.availability.wed_s + ' - ' + item.availability.wed_e + '\n' +'Thursday: '  + item.availability.thu_s + ' - ' + item.availability.thu_e + '\n' +'Friday: '  + item.availability.fri_s + ' - ' + item.availability.fri_e + '\n' +'Saturday: '  + item.availability.sat_s + ' - ' + item.availability.sat_e + '\n'"
+                      v-bind:data-content="'Sunday: '  + item.availability.sun_s + ':00 - ' + item.availability.sun_e + ':00\n' +'Monday: '  + item.availability.mon_s + ':00 - ' + item.availability.mon_e + ':00\n' + 'Tuesday: '  + item.availability.tue_s + ':00 - ' + item.availability.tue_e + ':00\n' +'Wednesday: '  + item.availability.wed_s + ':00 - ' + item.availability.wed_e + ':00\n' +'Thursday: '  + item.availability.thu_s + ':00 - ' + item.availability.thu_e + ':00\n' +'Friday: '  + item.availability.fri_s + ':00 - ' + item.availability.fri_e + ':00\n' +'Saturday: '  + item.availability.sat_s + ':00 - ' + item.availability.sat_e + ':00\n'"
                       title="Availability">Availability</button>
                   </div>
 
@@ -336,7 +322,7 @@
                 </div>
                 <div class="">
                   <div class="wrap-input100 validate-input" data-validate="Username is required">
-                    <input class="input100" type="text" name="task" id="task-type-input" placeholder="Task type">
+                    <input class="input100" type="text" name="task" id="task-type-create" placeholder="Task type">
                     <span class="focus-input100"></span>
                   </div>
                 </div>
@@ -359,44 +345,44 @@
               <div class="modal-body" style="padding:1rem 3rem">
                 <p>
                   Sunday
-                  <span id="sundayfro" style="border:0; font-weight:bold;">{{availability.sun_s}}</span>
-                  <span id="sundayto" style="border:0; font-weight:bold; ">{{availability.sun_e}}</span>
+                  <span id="sundayfro" style="border:0; font-weight:bold;">{{availability.sun_s}}:00 - </span>
+                  <span id="sundayto" style="border:0; font-weight:bold; ">{{availability.sun_e}}:00</span>
                 </p>
                 <div class="slider" id="slidersun"></div>
                 <p>
                   Monday
-                  <span id="mondayfro" style="border:0; font-weight:bold;">{{availability.mon_s}}</span>
-                  <span id="mondayto" style="border:0; font-weight:bold; ">{{availability.mon_e}}</span>
+                  <span id="mondayfro" style="border:0; font-weight:bold;">{{availability.mon_s}}:00 - </span>
+                  <span id="mondayto" style="border:0; font-weight:bold; ">{{availability.mon_e}}:00</span>
                 </p>
                 <div class="slider" id="slidermon"></div>
                 <p>
                   Tuesday
-                  <span id="tuesdayfro" style="border:0; font-weight:bold;">{{availability.tue_s}}</span>
-                  <span id="tuesdayto" style="border:0; font-weight:bold; ">{{availability.tue_e}}</span>
+                  <span id="tuesdayfro" style="border:0; font-weight:bold;">{{availability.tue_s}}:00 - </span>
+                  <span id="tuesdayto" style="border:0; font-weight:bold; ">{{availability.tue_e}}:00</span>
                 </p>
                 <div class="slider" id="slidertue"></div>
                 <p>
                   Wednesday
-                  <span id="wednesdayfro" style="border:0; font-weight:bold;">{{availability.wed_s}}</span>
-                  <span id="wednesdayto" style="border:0; font-weight:bold; ">{{availability.wed_e}}</span>
+                  <span id="wednesdayfro" style="border:0; font-weight:bold;">{{availability.wed_s}}:00 - </span>
+                  <span id="wednesdayto" style="border:0; font-weight:bold; ">{{availability.wed_e}}:00</span>
                 </p>
                 <div class="slider" id="sliderwed"></div>
                 <p>
                   Thursday
-                  <span id="thursdayfro" style="border:0; font-weight:bold;">{{availability.thu_s}}</span>
-                  <span id="thursdayto" style="border:0; font-weight:bold; ">{{availability.thu_e}}</span>
+                  <span id="thursdayfro" style="border:0; font-weight:bold;">{{availability.thu_s}}:00 - </span>
+                  <span id="thursdayto" style="border:0; font-weight:bold; ">{{availability.thu_e}}:00</span>
                 </p>
                 <div class="slider" id="sliderthu"></div>
                 <p>
                   Friday
-                  <span id="fridayfro" style="border:0; font-weight:bold;">{{availability.fri_s}}</span>
-                  <span id="fridayto" style="border:0; font-weight:bold; ">{{availability.fri_e}}</span>
+                  <span id="fridayfro" style="border:0; font-weight:bold;">{{availability.fri_s}}:00 - </span>
+                  <span id="fridayto" style="border:0; font-weight:bold; ">{{availability.fri_e}}:00</span>
                 </p>
                 <div class="slider" id="sliderfri"></div>
                 <p>
                   Saturday
-                  <span id="saturdayfro" style="border:0; font-weight:bold;">{{availability.sat_s}}</span>
-                  <span id="saturdayto" style="border:0; font-weight:bold; ">{{availability.sat_e}}</span>
+                  <span id="saturdayfro" style="border:0; font-weight:bold;">{{availability.sat_s}}:00 - </span>
+                  <span id="saturdayto" style="border:0; font-weight:bold; ">{{availability.sat_e}}:00</span>
                 </p>
                 <div class="slider" id="slidersat"></div>
 
@@ -419,22 +405,22 @@
                 </button>
               </div>
               <div class="modal-body d-flex flex-column">
-                <template id="" v-for="(item,index) in task_types">
+                <template id="" v-for="(item, index) in task_performance">
                   <div class="d-flex performance-list">
                     <div class="flex-grow-1">
-                      <p>{{item}}</p>
+                      <p>{{item.type}}</p>
                     </div>
-                    <div class="col-4 text-center" v-bind:class="task_performance[index].color">
-                      <p>{{task_performance[index].performance}}</p>
+                    <div class="col-4 text-center" v-bind:class="item.color">
+                      <p>{{item.performance}}</p>
                     </div>
                     <div class="btn-group col-1">
                       <button type="button" class="btn btn-sm btn-outline-jeans dropdown-toggle dropdown-toggle-split my-tasks-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Great</a>
-                        <a class="dropdown-item" href="#">Good</a>
-                        <a class="dropdown-item" href="#">Not Good</a>
+                        <a class="dropdown-item" href="#" v-on:click="set_performance('great', index)">Great</a>
+                        <a class="dropdown-item" href="#" v-on:click="set_performance('good', index)">Good</a>
+                        <a class="dropdown-item" href="#" v-on:click="set_performance('not good', index)">Not Good</a>
                       </div>
                     </div>
                   </div>
@@ -455,53 +441,60 @@
                 </button>
               </div>
               <div class="modal-body d-flex flex-column">
+                <!--task name-->
                 <div class="">
                   <div class="wrap-input100 validate-input" data-validate="Username is required">
                     <input class="input100" type="text" name="task" id="task-type-input" placeholder="Task name">
                     <span class="focus-input100"></span>
                   </div>
                 </div>
-                <select class="custom-select" style="margin-top:1rem;">
+                <!--task type-->
+                <select class="custom-select" id="task_type_select" style="margin-top:1rem;">
                   <option selected>Task type</option>
                   <option v-for="item in task_types" value="item">{{item}}</option>
                 </select>
+                <!--task time-->
                 <div class="modal-task-slide">
                   <p>
                     Time
-                    <span id="task_start">00:00</span>
-                    <span id="task_end">24:00</span>
+                    <span id="task_start">0</span><span>:00 - </span>
+                    <span id="task_end">24</span><span>:00</span>
                   </p>
                   <div class="slider" id="slidertask"></div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-2">Members:</div>
-                  <div class="col-sm-10">
-                    <div class="form-check" v-for="(item, index) in members" style="padding-top:.3rem;  ">
-                      <input class="form-check-input" type="checkbox" value="" id="'item.name' + index">
-                      <label class="form-check-label" for="defaultCheck1">
-                        {{item.name}}
-                      </label>
+                <!--task members-->
+                <form class="" id="members-checklist">
+                  <div class="form-group row">
+                    <div class="col-sm-2">Members:</div>
+                    <div class="col-sm-10">
+                      <div class="form-check" v-for="(item, index) in members" style="padding-top:.3rem;  ">
+                        <input class="form-check-input member-list-checkbox" type="checkbox" v-bind:value="item.first_name + ' ' + item.last_name">
+                        <label class="form-check-label" for="defaultCheck1">
+                          {{item.first_name}} {{item.last_name}}
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </form>
+
                 <fieldset class="form-group">
                   <div class="row">
                     <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
                     <div class="col-sm-10">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <input class="form-check-input priority-radio" type="radio" name="" value="low" checked>
                         <label class="form-check-label" for="gridRadios1">
                           Low
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <input class="form-check-input priority-radio" type="radio" name="" value="medium">
                         <label class="form-check-label" for="gridRadios2">
                           Medium
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <input class="form-check-input priority-radio" type="radio" name="" value="high">
                         <label class="form-check-label" for="gridRadios2">
                           High
                         </label>
@@ -514,6 +507,7 @@
             </div>
           </div>
         </div>
+
 
         <!--Content Table-->
         <div class="content-wrapper  table-responsive">
@@ -537,7 +531,7 @@
                   <td> <span v-for="persons in item.person">{{persons}} </span> </td>
                   <td>{{item.priority}}</td>
                   <td>
-                    <button type="button" class="btn btn-success btn-round btn-sm" v-on:click="finish_task(index)">
+                    <button type="button" class="btn btn-success btn-round btn-sm" v-on:click="finish_task(item.id)">
                       <i class="fas fa-check"></i>
                     </button></td>
                 </tr>
@@ -556,9 +550,11 @@
           </button>
 
           <div class="d-flex flex-column text-center">
+            <!--profile picture-->
             <div class="profile-image-div">
               <img v-bind:src="user.info.profilePicture" style="min-width:25%; max-width:25%" alt="">
             </div>
+
             <div class="">
               <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -569,6 +565,7 @@
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
+                <!--my information-->
                 <div class="tab-pane fade show active" style="padding-top:2rem" id="personal-info" role="tabpanel" aria-labelledby="home-tab">
                   <div class=" d-flex justify-content-center">
                     <div class="col-4 text-right" style="padding-left: 2rem;margin-right:0">
@@ -579,7 +576,7 @@
                       <p>Date of birth: </p>
                     </div>
                     <div class="col-4 text-left" style="padding-left: 2rem">
-                      <p>{{user.info.name}}</p>
+                      <p>{{user.info.first_name}} {{user.info.last_name}}</p>
                       <p>{{user.info.email}}</p>
                       <p>{{user.info.phone}}</p>
                       <p>{{user.info.background}}</p>
@@ -588,26 +585,31 @@
                   </div>
                 </div>
 
+                <!--edit information-->
                 <div class="tab-pane fade " id="edit-info" role="tabpanel" aria-labelledby="profile-tab">
                   <div class="ml-auto mr-auto pt-4 " style="max-width:40%;">
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                      <input class="input100" type="text" name="task" id="member-email-input" v-model="user.info.name">
+                      <input class="input100" type="text" name="profile-name-input" id="profile-first-name-input" v-model="user.info.first_name">
                       <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                      <input class="input100" type="email" name="task" id="member-email-input" v-model="user.info.email">
+                      <input class="input100" type="text" name="profile-name-input" id="profile-last-name-input" v-model="user.info.last_name">
                       <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                      <input class="input100" type="text" name="task" id="member-email-input" v-model="user.info.phone">
+                      <input class="input100" type="email" name="profile-email-input" id="profile-email-input" v-model="user.info.email">
                       <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                      <input class="input100" type="text" name="task" id="member-email-input" v-model="user.info.background">
+                      <input class="input100" type="text" name="profile-phone-input" id="profile-phone-input" v-model="user.info.phone">
                       <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                      <input class="input100" type="date" name="task" id="member-email-input" v-model="user.info.birthday">
+                      <input class="input100" type="text" name="profile-background-input" id="profile-background-input" v-model="user.info.background">
+                      <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                      <input class="input100" type="date" name="profile-birthday-input" id="profile-birthday-input" v-model="user.info.birthday">
                       <span class="focus-input100"></span>
                     </div>
                     <br>
@@ -615,46 +617,34 @@
                     <br>
                     <br>
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-
 
 
     <!--Bootstrap javascript-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
     <!-- Font awesome for icon -->
     <script src="https://kit.fontawesome.com/e8b7ee603e.js" crossorigin="anonymous"></script>
 
     <!--Data Tables javascript-->
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <!-- <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-    <!--date picker-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
     <!--Vue javascript -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
     <!--My custom javascript-->
     <script src="javascripts/main-js.js"></script>
-
-
-
-
 </body>
 
 </html>
