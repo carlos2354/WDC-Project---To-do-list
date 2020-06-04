@@ -197,7 +197,14 @@ var vuemain = new Vue({
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          vuemain.user = JSON.parse(this.response);
+          var server_response = JSON.parse(this.response);
+          vuemain.user = server_response.user;
+          vuemain.board = server_response.board;
+          vuemain.task_types= server_response.task_types;
+          vuemain.task_performance = server_response.task_performance;
+          vuemain.availability = server_response.availability;
+          vuemain.members = server_response.members;
+          vuemain.tasks = server_response.tasks;
         }
       };
 
@@ -220,7 +227,14 @@ var vuemain = new Vue({
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          vuemain.user = JSON.parse(this.response);
+          var server_response = JSON.parse(this.response);
+          vuemain.user = server_response.user;
+          vuemain.board = server_response.board;
+          vuemain.task_types= server_response.task_types;
+          vuemain.task_performance = server_response.task_performance;
+          vuemain.availability = server_response.availability;
+          vuemain.members = server_response.members;
+          vuemain.tasks = server_response.tasks;
         }
       };
 
@@ -287,7 +301,7 @@ var vuemain = new Vue({
     },
 
     add_task: function() {
-      var task_name_value = document.getElementById("member-email-input").value;
+      var task_name_value = document.getElementById("task-type-input").value;
       var task_type_select = document.getElementById("task_type_select");
       var task_type_selected = task_type_select.options[task_type_select.selectedIndex].text;
       var task_start_time_value= parseInt(document.getElementById("task_start").innerHTML);
@@ -301,11 +315,20 @@ var vuemain = new Vue({
         task_persons_value.push(task_persons[i].value);
         // console.log(task_persons_value[0]);
       }
+      console.log(task_persons.length);
 
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           vuemain.tasks = JSON.parse(this.response);
+          $( "#slidertask" ).slider( "values", [0,24] );
+          $("#task_start").text(0);
+          $("#task_end").text(24);
+          document.getElementById("task-type-input").value = "";
+          for(var j = 0; j < task_persons.length; j++)
+          {
+            $(".member-list-checkbox:checked")[1].checked = false;
+          }
         }
       };
 
@@ -324,7 +347,7 @@ var vuemain = new Vue({
     finish_task: function(id) {
 
       console.log(id);
-      
+
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -348,6 +371,27 @@ var vuemain = new Vue({
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           vuemain.availability = JSON.parse(this.response);
+          $( "#slidersun" ).slider( "values", [ vuemain.availability.sun_s, vuemain.availability.sun_e ] );
+          $( "#slidermon" ).slider( "values", [ vuemain.availability.mon_s, vuemain.availability.mon_e ] );
+          $( "#slidertue" ).slider( "values", [ vuemain.availability.tue_s, vuemain.availability.tue_e ] );
+          $( "#sliderwed" ).slider( "values", [ vuemain.availability.wed_s, vuemain.availability.wed_e ] );
+          $( "#sliderthu" ).slider( "values", [ vuemain.availability.thu_s, vuemain.availability.thu_e ] );
+          $( "#sliderfri" ).slider( "values", [ vuemain.availability.fri_s, vuemain.availability.fri_e ] );
+          $( "#slidersat" ).slider( "values", [ vuemain.availability.sat_s, vuemain.availability.sat_e ] );
+          $("#sundayfro").text(vuemain.availability.sun_s + ":00");
+          $("#sundayto").text("- " + vuemain.availability.sun_e + ":00");
+          $("#mondayfro").text(vuemain.availability.mon_s + ":00");
+          $("#mondayto").text("- " + vuemain.availability.mon_e + ":00");
+          $("#tuesdayfro").text(vuemain.availability.tue_s + ":00");
+          $("#tuesdayto").text("- " + vuemain.availability.tue_e + ":00");
+          $("#wednesdayfro").text(vuemain.availability.wed_s + ":00");
+          $("#wednesdayto").text("- " + vuemain.availability.wed_e + ":00");
+          $("#thursdayfro").text(vuemain.availability.thu_s + ":00");
+          $("#thursdayto").text("- " + vuemain.availability.thu_e + ":00");
+          $("#fridayfro").text(vuemain.availability.fri_s + ":00");
+          $("#fridayto").text("- " + vuemain.availability.fri_e + ":00");
+          $("#saturdayfro").text(vuemain.availability.sat_s + ":00");
+          $("#saturdayto").text("- " + vuemain.availability.sat_e + ":00");
         }
       };
 
@@ -378,7 +422,7 @@ var vuemain = new Vue({
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          vuemain.task_performance = this.response;
+          vuemain.task_performance = JSON.parse(this.response);
         }
       };
 

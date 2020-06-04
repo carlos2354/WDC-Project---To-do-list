@@ -36,10 +36,12 @@
         max: 24,
         step: 1,
         slide: function(event, ui) {
-          var start = ui.values[0];
-          var end = ui.values[1];
-          vuemain.availability.sun_s = start;
-          vuemain.availability.sun_e = end;
+          vuemain.availability.sun_s = ui.values[0];
+          vuemain.availability.sun_e = ui.values[1];
+          var start =  vuemain.availability.sun_s;
+          var end =  vuemain.availability.sun_e;
+          // vuemain.availability.sun_s = start;
+          // vuemain.availability.sun_e = end;
           $("#sundayfro").text((start) + ":00");
           $("#sundayto").text("- " + end + ":00");
         }
@@ -482,19 +484,19 @@
                     <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
                     <div class="col-sm-10">
                       <div class="form-check">
-                        <input class="form-check-input priority-radio" type="radio" name="" value="low" checked>
+                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="low" checked>
                         <label class="form-check-label" for="gridRadios1">
                           Low
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input priority-radio" type="radio" name="" value="medium">
+                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="medium">
                         <label class="form-check-label" for="gridRadios2">
                           Medium
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input priority-radio" type="radio" name="" value="high">
+                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="high">
                         <label class="form-check-label" for="gridRadios2">
                           High
                         </label>
@@ -502,7 +504,8 @@
                     </div>
                   </div>
                 </fieldset>
-                <button type="button" name="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_task()">+ Add task</button>
+                <button type="button" class="btn btn-jeans button-margin btn-round"  v-on:click="add_task()" data-dismiss="modal">+ Add task</button>
+                <!--<button type="button" name="button" class="btn btn-jeans button-margin btn-round" >+ Add task</button>-->
               </div>
             </div>
           </div>
@@ -552,7 +555,7 @@
           <div class="d-flex flex-column text-center">
             <!--profile picture-->
             <div class="profile-image-div">
-              <img v-bind:src="user.info.profilePicture" style="min-width:25%; max-width:25%" alt="">
+              <img v-bind:src="user.info.profilePicture" style="min-width:25%; max-width:25%; padding-top:2rem; padding-bottom:2rem" alt="">
             </div>
 
             <div class="">
