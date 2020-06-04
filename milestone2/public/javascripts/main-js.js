@@ -2,14 +2,16 @@ var vuemain = new Vue({
   el: '#main',
   data: {
     user: {
-      id: "000001",
-      name: "Carlos Atis",
-      email: "carlos.atis154@gmail.com",
-      profilePicture: "images/pngfuel.com.png",
-      birthday: "Oct 1, 1998",
-      phone: 0469863752,
-      background: "student",
-      isManager: false,
+      info:{
+        id: "000001",
+        name: "Carlos Atis",
+        email: "carlos.atis154@gmail.com",
+        profilePicture: "images/pngfuel.com.png",
+        birthday: "Oct 1, 1998",
+        phone: 0469863752,
+        background: "student",
+        isManager: false,
+      },
       boards: [{
         name: "Web Database",
         id: "0000001",
@@ -31,8 +33,8 @@ var vuemain = new Vue({
         id: "0000005",
         active: false
       }],
-      profile_display: false,
-      table_display: true,
+      profile_display: true,
+      table_display: false,
 
     },
 
@@ -167,6 +169,10 @@ var vuemain = new Vue({
 
   },
   methods: {
+    goto_profile: function() {
+      vuemain.user.table_display = true;
+      vuemain.user.profile_display = false;
+    },
 
     //----------------------------general ajax----------------------------
     populate_today: function(id) {
@@ -201,39 +207,27 @@ var vuemain = new Vue({
       xhttp.send();
     },
 
-    get_profile_id: function() {
-      var xhttp = new XMLHttpRequest();
+    save_profile: function() {
+      var i_name ="";
+      var i_email = "";
+      var i_birthday = "";
+      var i_phone = "";
+      var i_background ="";
+
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
+          vuemain.user.info = JSON.parse(this.response);
         }
       };
 
-      xhttp.open("GET", "/users/profile/id", true);
-      xhttp.send();
-    },
-
-    goto_profile: function() {
-      vuemain.user.table_display = true;
-      vuemain.user.profile_display = false;
-    },
-
-    save_information: function() {
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          vuemain.tasks = JSON.parse(this.response);
-        }
-      };
-
-      xhttp.open("POST", "/users/manager/add_task", true);
+      xhttp.open("POST", "/users/save_profile", true);
       xhttp.setRequestHeader("Content-type", "application/json");
       xhttp.send(JSON.stringify({
-        "name": task_name_value,
-        "tag": task_tag_value,
-        "start_time": task_start_time_value,
-        "end_time": task_end_time_value,
-        "persons": task_persons,
-        "priority": task_priority_value
+        "name": i_name,
+        "email": i_email,
+        "birthday": i_birthday,
+        "phone": i_phone,
+        "background": i_background,
       }));
     },
 
@@ -291,9 +285,10 @@ var vuemain = new Vue({
       }));
     },
 
-    finish_task: function() {
+    finish_task: function(index) {
       var task_ticket_value = document.getElementById("task-ticket");
 
+      alert(index);
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -390,24 +385,3 @@ $(function() {
     trigger: 'focus'
   });
 });
-
-
-
-// var counter = 1;
-//
-// $("#addTask").before(".dataTables_info");
-//
-// $('#addRow').on('click', function() {
-//   t.row.add([
-//     counter + '.1',
-//     counter + '.2',
-//     counter + '.3',
-//     counter + '.4',
-//     counter + '.5'
-//   ]).draw(false);
-//
-//   counter++;
-//  });
-
-// Automatically add a first row of data
-// $('#addRow').click();
