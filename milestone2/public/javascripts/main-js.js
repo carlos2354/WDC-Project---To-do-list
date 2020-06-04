@@ -2,7 +2,7 @@ var vuemain = new Vue({
   el: '#main',
   data: {
     user: {
-      id: 000001,
+      id: "000001",
       name: "Carlos Atis",
       email: "carlos.atis154@gmail.com",
       profilePicture: "images/pngfuel.com.png",
@@ -12,32 +12,34 @@ var vuemain = new Vue({
       isManager: false,
       boards: [{
         name: "Web Database",
-        id: 0000001,
+        id: "0000001",
         active: true
       }, {
         name: "Algorithm Design and Structure Analysis",
-        id: 0000002,
+        id: "0000002",
         active: false
       }, {
         name: "Algorithm Design and Data Structures",
-        id: 0000003,
+        id: "0000003",
         active: false
       }, {
         name: "Professional Practice",
-        id: 0000004,
+        id: "0000004",
         active: false
       }, {
         name: "Foundations of Human Neuroanatomy",
-        id: 0000005,
+        id: "0000005",
         active: false
       }],
+      profile_display: false,
+      table_display: true,
 
     },
 
     board: {
-      id: 00000001,
+      id: "00000001",
       name: "Web and Database Computing",
-      manager_id: 000001,
+      manager_id: "000001",
       manager_name: "Carlos Atis",
       manager_image: "images/smiley.jfif"
     },
@@ -81,6 +83,7 @@ var vuemain = new Vue({
     members: [{
         name: "Carlos Atis",
         image: "somesource",
+        id: "000001",
         availability: {
           mon_s: "06:00",
           mon_e: "20:00",
@@ -107,6 +110,7 @@ var vuemain = new Vue({
 
       {
         name: "Huatao Dong",
+        id: "000002",
         image: "images/yellow-flower.jpg",
         availability: {
           mon_s: "08:00",
@@ -133,30 +137,71 @@ var vuemain = new Vue({
       }
     ],
     tasks: [{
-      ticket: 1,
-      task_name: "Research",
-      task_type: "Study",
-      start_time: "08:00",
-      end_time: "10:00",
-      status: "Complete",
-      person: ["Carlos", "Hunter"],
-      priority: "high"
-    }, {
-      ticket: 2,
-      task_name: "Watering plants",
-      task_type: "Gardening",
-      start_time: "19:00",
-      end_time: "20:00",
-      status: "Complete",
-      person: ["Ofel"],
-      priority: "medium"
-    }]
+        ticket: 1,
+        name: "Research",
+        type: "Study",
+        start_time: "08:00",
+        end_time: "10:00",
+        status: "Complete",
+        person: ["Carlos", "Hunter"],
+        priority: "high"
+      }, {
+        ticket: 2,
+        name: "Watering plants",
+        type: "Gardening",
+        start_time: "19:00",
+        end_time: "20:00",
+        person: ["Ofel"],
+        priority: "medium"
+      },
+      {
+        ticket: 3,
+        name: "Studying Code",
+        type: "Study",
+        start_time: "15:00",
+        end_time: "20:00",
+        person: ["Carlos"],
+        priority: "high"
+      }
+    ]
 
   },
   methods: {
-    add_task_type: function() {
-      var task_type_value = document.getElementById("task_type_input").value;
 
+    //----------------------------general ajax----------------------------
+    populate_today: function(id) {
+      // var userID = from cookie
+      vuemain.user.table_display = false;
+      vuemain.user.profile_display = true;
+      var board_id_value = id;
+      var date_value = ""; //today's date
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          vuemain.user = JSON.parse(this.response);
+        }
+      };
+
+      xhttp.open("GET", "/users/board/?board_id=" + encodeURIComponent(board_id_value) + "&date=" + encodeURIComponent(date_value), true);
+      xhttp.send();
+    },
+
+    populate_on_date: function() {
+      var board_id_value = vuemain.board.id;
+      var date_value = ""; //selected date
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          vuemain.user = JSON.parse(this.response);
+        }
+      };
+
+      xhttp.open("GET", "/users/board?board_id=" + encodeURIComponent(board_id_value) + "&date=" + encodeURIComponent(date_value), true);
+      xhttp.send();
+    },
+
+    get_profile_id: function() {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -164,7 +209,46 @@ var vuemain = new Vue({
         }
       };
 
-      xhttp.open("POST", "/manager/add_task_type", true);
+      xhttp.open("GET", "/users/profile/id", true);
+      xhttp.send();
+    },
+
+    goto_profile: function() {
+      vuemain.user.table_display = true;
+      vuemain.user.profile_display = false;
+    },
+
+    save_information: function() {
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          vuemain.tasks = JSON.parse(this.response);
+        }
+      };
+
+      xhttp.open("POST", "/users/manager/add_task", true);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send(JSON.stringify({
+        "name": task_name_value,
+        "tag": task_tag_value,
+        "start_time": task_start_time_value,
+        "end_time": task_end_time_value,
+        "persons": task_persons,
+        "priority": task_priority_value
+      }));
+    },
+
+    //----------------------------manager ajax----------------------------
+    add_task_type: function() {
+      var task_type_value = document.getElementById("task-type-input").value;
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          vuemain.task_types = JSON.parse(this.response);
+        }
+      };
+
+      xhttp.open("POST", "/users/manager/add_task_type", true);
       xhttp.send(task_type_value);
     },
 
@@ -174,11 +258,10 @@ var vuemain = new Vue({
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
+          vuemain.members = JSON.parse(this.response);
         }
       };
-      xhttp.open("POST", "/manager/add_member", true);
-      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.open("POST", "/users/manager/add_member", true);
       xhttp.send(member_email_value);
     },
 
@@ -192,154 +275,112 @@ var vuemain = new Vue({
 
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
+          vuemain.tasks = JSON.parse(this.response);
         }
       };
 
-      xhttp.open("POST", "/manager/add_task", true);
+      xhttp.open("POST", "/users/manager/add_task", true);
       xhttp.setRequestHeader("Content-type", "application/json");
       xhttp.send(JSON.stringify({
-        "task_name": task_name_value,
-        "task_tag": task_tag_value,
-        "task_start_time": task_start_time_value,
-        "task_end_time": task_end_time_value,
-        "task_persons": task_persons,
-        "task_priority": task_priority_value
-      }));
-    },
-
-    edit_task: function() {
-      // var task_name_value = document.getElementById("member-email-input").value;
-      // var task_tag_value= document.getElementById("member-email-input").value;
-      // var task_start_time_value= document.getElementById("member-email-input").value;
-      // var task_end_time_value= document.getElementById("member-email-input").value;
-      //  var task_status= document.getElementById("member-email-input").value;
-      // var task_persons=[];
-      // var task_priority_value= document.getElementById("member-email-input").value;
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-
-        }
-      };
-      xhttp.open("POST", "/manager/edit_task", true);
-      xhttp.setRequestHeader("Content-type", "application/json");
-      xhttp.send(JSON.stringify({
-        "task_name": task_name_value,
-        "task_tag": task_tag_value,
-        "task_start_time": task_start_time_value,
-        "task_end_time": task_end_time_value,
-        "task_status": task_status_value,
-        "task_persons": task_persons,
-        "task_priority": task_priority_value
+        "name": task_name_value,
+        "tag": task_tag_value,
+        "start_time": task_start_time_value,
+        "end_time": task_end_time_value,
+        "persons": task_persons,
+        "priority": task_priority_value
       }));
     },
 
     finish_task: function() {
+      var task_ticket_value = document.getElementById("task-ticket");
+
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
+          vuemain.tasks = JSON.parse(this.response);
         }
       };
-      xhttp.open("POST", "/manager/finish_task", true);
-      xhttp.setRequestHeader("Content-type", "application/json");
-      xhttp.send(JSON.stringify({
-        lines: lines,
-        suffix: suffix
-      }));
+      xhttp.open("POST", "/users/manager/finish_task", true);
+      xhttp.send(ticket);
     },
 
+    //----------------------------employee ajax----------------------------
     save_availability: function() {
+      var sun_start_value = document.getElementById("sundayfro").value;
+      var sun_end_value = document.getElementById("sundayto").value;
+      var mon_start_value = document.getElementById("mondayfro").value;
+      var mon_end_value = document.getElementById("mondayto").value;
+      var tue_start_value = document.getElementById("tuesdayfro").value;
+      var tue_end_value = document.getElementById("tuesdayto").value;
+      var wed_start_value = document.getElementById("wednesdayfro").value;
+      var wed_end_value = document.getElementById("wednesdayto").value;
+      var thu_start_value = document.getElementById("thursdayfro").value;
+      var thu_end_value = document.getElementById("thursdayto").value;
+      var fri_start_value = document.getElementById("fridayfro").value;
+      var fri_end_value = document.getElementById("fridayto").value;
+      var sat_start_value = document.getElementById("saturdayfro").value;
+      var sat_end_value = document.getElementById("saturdayto").value;
+
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
+          vuemain.availability = JSON.parse(this.response);
         }
       };
-      xhttp.open("POST", "/user/save_availability", true);
+
+      xhttp.open("POST", "/users/user/save_availability", true);
       xhttp.setRequestHeader("Content-type", "application/json");
       xhttp.send(JSON.stringify({
-        lines: lines,
-        suffix: suffix
+        "sun_s": sun_start_value,
+        "sun_e": sun_end_value,
+        "mon_s": mon_start_value,
+        "mon_e": mon_end_value,
+        "tue_s": tue_start_value,
+        "tue_e": tue_end_value,
+        "wed_s": wed_start_value,
+        "wed_e": wed_end_value,
+        "thu_s": thu_start_value,
+        "thu_e": thu_end_value,
+        "fri_s": fri_start_value,
+        "fri_e": fri_end_value,
+        "sat_s": sat_start_value,
+        "sat_e": sat_end_value,
       }));
     },
 
     set_performance: function() {
+      var task_performance_value = "";
+      var task_index = "";
+      var task_name_value = "";
+
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
+          vuemain.task_performance = this.response;
         }
       };
-      xhttp.open("POST", "/user/set_performance", true);
+      xhttp.open("POST", "/users/user/set_performance", true);
       xhttp.setRequestHeader("Content-type", "application/json");
       xhttp.send(JSON.stringify({
-        lines: lines,
-        suffix: suffix
+        "index": task_index,
+        "name": name,
+        "performance": performance,
       }));
     }
   },
-
-  computed: {
-    availability_string: function() {
-      var count = 0;
-      return this.members[count].availability.mon_s;
-      count++;
-    }
-  }
 })
-
-//---------------------default values for availability sliders in  'My availability modal'---------------------
-var my_availability = {
-  mon_s: "08:00",
-  mon_e: "20:00",
-  tue_s: "08:00",
-  tue_e: "20:00",
-  wed_s: "08:00",
-  wed_e: "20:00",
-  thu_s: "08:00",
-  thu_e: "20:00",
-  fri_s: "08:00",
-  fri_e: "20:00",
-  sat_s: "00:00",
-  sat_e: "20:00",
-  sun_s: "00:00",
-  sun_e: "20:00"
-}
-
 
 
 //---------------------sidebar collapse---------------------
 $(document).ready(function() {
-  $('#sidebarCollapse').on('click', function() {
+  $('.sidebarCollapse').on('click', function() {
     $('#sidebar').toggleClass('active');
   });
 });
 
-
-
 //---------------------data table---------------------
 $(document).ready(function() {
   var t = $('#example').DataTable();
-  var counter = 1;
-
-  $("#addTask").before(".dataTables_info");
-
-  $('#addRow').on('click', function() {
-    t.row.add([
-      counter + '.1',
-      counter + '.2',
-      counter + '.3',
-      counter + '.4',
-      counter + '.5'
-    ]).draw(false);
-
-    counter++;
-  });
-
-  // Automatically add a first row of data
-  $('#addRow').click();
 });
 
 
@@ -348,5 +389,25 @@ $(function() {
   $('[data-toggle="popover"]').popover({
     trigger: 'focus'
   });
-
 });
+
+
+
+// var counter = 1;
+//
+// $("#addTask").before(".dataTables_info");
+//
+// $('#addRow').on('click', function() {
+//   t.row.add([
+//     counter + '.1',
+//     counter + '.2',
+//     counter + '.3',
+//     counter + '.4',
+//     counter + '.5'
+//   ]).draw(false);
+//
+//   counter++;
+//  });
+
+// Automatically add a first row of data
+// $('#addRow').click();

@@ -41,7 +41,7 @@ p {
   border-bottom-color: rgb(225, 225, 225);
 }
 
-#sidebarCollapse {
+.sidebarCollapse {
   border-radius: 20px;
   /* position: absolute; */
   margin: 10px 10px;
@@ -103,8 +103,23 @@ a, a:hover, a:focus {
 }
 
 /*-------------------------------page content---------------------------*/
+/*-------------------------------page content table---------------------------*/
 #content {
   /* background-color: red; */
+}
+
+.page_table {
+  display: none;
+}
+
+.page_profile {
+  display: none;
+}
+
+/*-------------------------------page content profile---------------------------*/
+.profile-image-div{
+  background-color: #BDE7FF;
+  margin-bottom:1rem;
 }
 
 /*-------------------------------content header---------------------------*/
@@ -142,6 +157,10 @@ a, a:hover, a:focus {
 
 .member-list {
   padding: .3rem 0;
+}
+
+.modal-task-slide {
+  padding: 1rem .4rem;
 }
 
 /*-------------------------------content employee control---------------------------*/
@@ -204,6 +223,19 @@ a, a:hover, a:focus {
   padding: 40px 80px;
 }
 
+.table th {
+  /* background-color: rgba(34, 174, 255, 0.5); */
+  color: rgb(50, 50, 50);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #D6F0FF;
+}
+
+.table-striped tbody tr {
+  color: #495057;
+}
+
 /*-------------------------------input---------------------------------*/
 input {
   outline: none;
@@ -219,8 +251,8 @@ textarea:focus, input:focus {
   border-color: transparent !important;
 }
 
-.button-margin{
-  margin :1rem 2rem .1rem;
+.button-margin {
+  margin: 1rem 2rem .1rem;
 }
 
 .wrap-input100 {
