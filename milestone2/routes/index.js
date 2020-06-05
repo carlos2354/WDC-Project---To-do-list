@@ -2,11 +2,20 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
 module.exports = router;
+
+router.get('/', function(req, res, next) {
+  res.sendFile('/home/ubuntu/wdc/project/milestone2/public/landing.html');
+});
+
+router.get('/login', function(req, res, next) {
+  res.sendStatus(200);
+});
+
+router.get('/signup', function(req, res, next) {
+  res.sendStatus(200);
+});
 
 router.get('/dbtest', function(req,res,next){
 

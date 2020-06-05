@@ -217,6 +217,7 @@ input[type=text]:placeholder, input[type=password]:placeholder {
   -webkit-animation-delay: 0.2s;
   -moz-animation-delay: 0.2s;
   animation-delay: 0.2s;
+  padding:10% 0;
 }
 
 .fadeIn.second {

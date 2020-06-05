@@ -18,48 +18,56 @@
 </head>
 
 <body>
+  <div class="" id="main">
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
 
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-      </div>
-
-      <!-- Login Form -->
-      <form>
-        <div class="row no-gutters " id="name-row">
-          <div class=" col-lg-6">
-            <input type="text" id="first-name" class="fadeIn second" name="firstname" placeholder="First Name">
-          </div>
-          <div class="col-lg-6">
-            <input type="text" id="last-name" class="fadeIn third" name="lastname" placeholder="Last Name">
-          </div>
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <img src="images/icon.png" style="max-width:10%" id="icon" alt="User Icon" />
         </div>
-        <input type="text" id="login" class="fadeIn fourth" name="login" placeholder="Email Address">
-        <input type="password" id="password" class="fadeIn fifth" name="login" placeholder="Password">
-        <input type="password" id="password" class="fadeIn sixth" name="login" placeholder="Confirm Password">
+
+        <!-- Login Form -->
+        <form>
+          <div class="row no-gutters " id="name-row">
+            <div class=" col-lg-6">
+              <input type="text" id="first-name" class="fadeIn second" name="firstname" placeholder="First Name">
+            </div>
+            <div class="col-lg-6">
+              <input type="text" id="last-name" class="fadeIn third" name="lastname" placeholder="Last Name">
+            </div>
+          </div>
+          <input type="text" id="email" class="fadeIn fourth" name="email" placeholder="Email Address">
+          <input type="password" id="password" class="fadeIn fifth" name="password" placeholder="Password">
+          <input type="password" id="confirm-password" class="fadeIn sixth" name="confirm-password" placeholder="Confirm Password">
+          <br>
+          <br>
+
+          <input type="button" v-on:click="sign_up()" class="fadeIn seventh" value="Sign up">
+        </form>
+
+        <!-- Remind Passowrd -->
+        <a class="underlineHover" href="#">Forgot Password?</a>
         <br>
         <br>
-        
-        <input type="submit" class="fadeIn seventh" value="Sign up">
-      </form>
 
-      <!-- Remind Passowrd -->
-      <a class="underlineHover" href="#">Forgot Password?</a>
-      <br>
-      <br>
-
-      <div id="formFooter">
-        <div class="">
-          <p>google sign up</p>
+        <div id="formFooter">
+          <div class="">
+            <p></p>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
+
+  <!--Vue javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <!-- my javascript -->
+  <script src="javascripts/signup.js"></script>
+  <!--jQuery-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
 
 </body>
 

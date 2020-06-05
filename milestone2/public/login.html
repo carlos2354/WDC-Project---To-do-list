@@ -15,38 +15,50 @@
   <link rel="stylesheet" href="stylesheets/login-style.css">
   <link rel="stylesheet" href="stylesheets/custom-bootstrap.css">
 
+
   <title></title>
 </head>
 
 <body>
+  <div class="" id="main">
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
 
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-      </div>
-
-      <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth " value="Log In">
-      </form>
-
-      <!-- Remind Passowrd -->
-      <a class="underlineHover" href="#">Forgot Password?</a>
-      <div id="formFooter">
-        <div class="">
-          <p>google sign in</p>
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <img src="images/icon.png" style="max-width:10%" id="icon" alt="User Icon" />
         </div>
-      </div>
 
+        <!-- Login Form -->
+        <form>
+          <input type="text" id="email-address" class="fadeIn second" name="login-email" placeholder="Email Address">
+          <input type="password" id="password" class="fadeIn third" name="login-password" placeholder="Password">
+          <br>
+          <br>
+          <input type="button" v-on:click="login()" class="fadeIn fourth " value="Log In">
+
+        </form>
+
+        <!-- Remind Passowrd -->
+        <a class="underlineHover" href="#">Forgot Password?</a>
+        <br>
+        <br>
+        <div id="formFooter">
+          <div class="">
+            <p></p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
+  <!--Vue javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <!--My javascript -->
+  <script src="javascripts/login.js"></script>
+  <!--jQuery-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
 </body>
 
 </html>

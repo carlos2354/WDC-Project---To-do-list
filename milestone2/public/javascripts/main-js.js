@@ -321,14 +321,13 @@ var vuemain = new Vue({
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           vuemain.tasks = JSON.parse(this.response);
-          $( "#slidertask" ).slider( "values", [0,24] );
+          $("#slidertask").slider( "values", [0,24] );
           $("#task_start").text(0);
           $("#task_end").text(24);
-          document.getElementById("task-type-input").value = "";
-          for(var j = 0; j < task_persons.length; j++)
-          {
-            $(".member-list-checkbox:checked")[1].checked = false;
-          }
+          $("#task-type-input").val("");
+          $(".member-list-checkbox:checked").each(function( index ) {
+            $( this ).prop("checked", false) ;
+          });
         }
       };
 
