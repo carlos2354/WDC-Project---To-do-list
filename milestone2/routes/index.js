@@ -9,11 +9,11 @@ router.get('/', function(req, res, next) {
   res.sendFile('/home/ubuntu/wdc/project/milestone2/public/landing.html');
 });
 
-router.get('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   res.sendStatus(200);
 });
 
-router.get('/signup', function(req, res, next) {
+router.post('/sign_up', function(req, res, next) {
   res.sendStatus(200);
 });
 

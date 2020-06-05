@@ -13,6 +13,7 @@ router.post('/board/populate', function(req, res, next) {
   //get id of user from server session
   //fill var server_user with object designated for the user
   //send
+
   var server_user = {user: {
       info: {
         id: "000001",
@@ -55,6 +56,11 @@ router.post('/board/populate', function(req, res, next) {
     board: {
       id: "00000001",
       name: "Web and Database Computing",
+      day: 1,
+      month: 12,
+      year: 2020,
+      date: new Date,
+      date_word:"",
       manager_id: "000001",
       manager_name: "Carlos Atis",
       manager_image: "images/smiley.jfif"
@@ -186,7 +192,13 @@ router.post('/board/populate', function(req, res, next) {
         person: ["Carlos"],
         priority: "high"
       }
-    ]}
+    ]};
+
+    server_user.board.date=req.body.date;
+    server_user.board.day=req.body.year;
+    server_user.board.month=req.body.year;
+    server_user.board.year=req.body.year;
+
   res.send(server_user);
 });
 

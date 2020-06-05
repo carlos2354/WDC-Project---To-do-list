@@ -43,6 +43,11 @@ var vuemain = new Vue({
     board: {
       id: "00000001",
       name: "Web and Database Computing",
+      day: 1,
+      month: 12,
+      year: 2020,
+      date: new Date,
+      date_word:"",
       manager_id: "000001",
       manager_name: "Carlos Atis",
       manager_image: "images/smiley.jfif"
@@ -205,6 +210,11 @@ var vuemain = new Vue({
           vuemain.availability = server_response.availability;
           vuemain.members = server_response.members;
           vuemain.tasks = server_response.tasks;
+          vuemain.board.day = day;
+          vuemain.board.month = month;
+          vuemain.board.year = year;
+          vuemain.board.date = today;
+          vuemain.board.date_word = vuemain.board.day + " " + today.toLocaleString('default', { month: 'long' }) + " " + vuemain.board.year;
         }
       };
 
@@ -214,15 +224,25 @@ var vuemain = new Vue({
         "day": day,
         "month": month,
         "year": year,
+        "date":today
       }));
     },
 
-    populate_on_date: function() {
+    populate_on_date: function(when) {
       var board_id_value = vuemain.board.id;
 
-      var year = "";
-      var month = "";
-      var day = "";
+      var today = vuemain.board.date;
+      if(when==="next")
+      {
+        today.setDate(today.getDate()+1);
+      }
+      else if(when==="prev")
+      {
+        today.setDate(today.getDate()-1);
+      }
+      var year = today.getFullYear();
+      var month = today.getMonth();
+      var day = today.getDate();
 
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
@@ -235,6 +255,11 @@ var vuemain = new Vue({
           vuemain.availability = server_response.availability;
           vuemain.members = server_response.members;
           vuemain.tasks = server_response.tasks;
+          vuemain.board.day = day;
+          vuemain.board.month = month;
+          vuemain.board.year = year;
+          vuemain.board.date = today;
+          vuemain.board.date_word = vuemain.board.day + " " + today.toLocaleString('default', { month: 'long' }) + " " + vuemain.board.year;
         }
       };
 
@@ -244,6 +269,7 @@ var vuemain = new Vue({
         "day": day,
         "month": month,
         "year": year,
+        "date":today
       }));
     },
 
@@ -433,8 +459,10 @@ var vuemain = new Vue({
       }));
     }
   },
-})
+});
 
+//---------------------populate the board as soon as page loads -------------------------
+vuemain.populate_today(vuemain.board.id);
 
 //---------------------sidebar collapse---------------------
 $(document).ready(function() {

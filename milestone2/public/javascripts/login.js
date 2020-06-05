@@ -9,10 +9,10 @@ var vuemain = new Vue({
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          Window.location.href = "/main.html";
+          window.location.href = '/main.html';
         }
         if (this.readyState == 4 && this.status == 400) {
-          Window.location.href = "/login.html";
+          window.location.href = "/login.html";
         }
       };
 
@@ -24,4 +24,4 @@ var vuemain = new Vue({
       }));
     }
   }
-})
+});

@@ -9,14 +9,14 @@ var vuemain = new Vue({
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          Window.location.href = "/main.html";
+          window.location.href = "/main.html";
         }
         if (this.readyState == 4 && this.status == 400) {
-          Window.location.href = "/signup.html";
+          window.location.href = "/signup.html";
         }
       };
 
-      xhttp.open("POST", "/login", true);
+      xhttp.open("POST", "/sign_up", true);
       xhttp.setRequestHeader("Content-type", "application/json");
       xhttp.send(JSON.stringify({
         "first_name": $("#first-name").val(),
