@@ -8,7 +8,7 @@ CREATE TABLE user(
   work_background VARCHAR(255),
   image_source VARCHAR(255),
   PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE board(
   id VARCHAR(255),
@@ -26,8 +26,16 @@ CREATE TABLE task_type(
   type VARCHAR(255),
   PRIMARY KEY (board_id, type_id),
   FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
-)
+);
 
+
+CREATE TABLE user_has_task(
+  user_id VARCHAR(255),
+  task_id VARCHAR(255),
+  board_id VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (board_id, task_id) REFERENCES task(board_id, id)
+);
 /*stores a user's ownership and availability at a certain board*/
 CREATE TABLE user_has_board(
   user_id VARCHAR(255),
@@ -76,13 +84,7 @@ CREATE TABLE task(
   FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
 )
 
-CREATE TABLE user_has_task(
-  user_id VARCHAR(255),
-  task_id VARCHAR(255),
-  board_id VARCHAR(255),
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (board_id, task_id) REFERENCES task(board_id, id)
-);
+
 
 
 /*---------------------------Retrieval queries-------------------*/

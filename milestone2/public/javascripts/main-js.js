@@ -364,7 +364,7 @@ var vuemain = new Vue({
         "tag": task_type_selected,
         "start_time": task_start_time_value,
         "end_time": task_end_time_value,
-        "persons": task_persons_value,  //sends full name instead of first and last
+        "persons": task_persons_value,  //sends id
         "priority": task_priority_value
       }));
     },
