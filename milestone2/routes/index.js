@@ -5,17 +5,33 @@ var router = express.Router();
 
 module.exports = router;
 
+
+router.use(function(req,res,next){
+    // req.session.user = "good";
+    // req.session.password = "iloveyou";
+    req.session.user = "1111";
+    //console.log(req.session);
+    // if(req.session.user == 'test');
+    next();
+});
+
+
 router.get('/', function(req, res, next) {
+        // console.log(req.session);
   res.sendFile('/home/ubuntu/wdc/project/milestone2/public/landing.html');
 });
 
+
 router.post('/login', function(req, res, next) {
+
   res.sendStatus(200);
 });
 
 router.post('/sign_up', function(req, res, next) {
   res.sendStatus(200);
 });
+
+
 
 router.get('/dbtest', function(req,res,next){
 

@@ -116,6 +116,9 @@ a, a:hover, a:focus {
   display: none;
 }
 
+.page_empty{
+  display: none;
+}
 /*-------------------------------page content profile---------------------------*/
 .profile-image-div{
   background-color: #BDE7FF;

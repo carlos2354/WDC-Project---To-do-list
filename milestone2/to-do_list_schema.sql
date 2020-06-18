@@ -1,45 +1,62 @@
 CREATE TABLE user(
   first_name VARCHAR(255),
   last_name VARCHAR(255),
-  id VARCHAR(255),
   email VARCHAR(255) NOT NULL,
   phone INT,
   password VARCHAR(255) NOT NULL,
   work_background VARCHAR(255),
   image_source VARCHAR(255),
-  PRIMARY KEY (id)
+  PRIMARY KEY (email)
 );
 
 CREATE TABLE board(
-  id VARCHAR(255),
+  id INT AUTO_INCREMENT,
   name VARCHAR(255),
-  manager_name VARCHAR(255),
-  manager_id VARCHAR(255),
+  manager_first_name VARCHAR(255),
+  manager_last_name VARCHAR(255),
+  manager_email VARCHAR(255),
   PRIMARY KEY (id),
-  FOREIGN KEY (manager_id) REFERENCES user(id) ON DELETE SET NULL
-)
+  FOREIGN KEY (manager_email) REFERENCES user(email) ON DELETE CASCADE
+);
 
 /*stores the multi valued task types of a board*/
 CREATE TABLE task_type(
-  board_id VARCHAR(255),
-  type_id VARCHAR(255),
-  type VARCHAR(255),
-  PRIMARY KEY (board_id, type_id),
+  board_id INT,
+  id INT AUTO_INCREMENT,
+  name VARCHAR(255),
+  PRIMARY KEY (board_id, id),
+  KEY(id),
   FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
 );
 
+CREATE TABLE task(
+  id INT AUTO_INCREMENT,
+  board_id INT,
+  task_type_id INT,
+  name VARCHAR(255),
+  type VARCHAR(255),
+  time_start INT,
+  time_end INT,
+  priority VARCHAR(255),
+  date DATE,
+  PRIMARY KEY (board_id, id),
+  KEY(id),
+  FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE,
+  FOREIGN KEY (task_type_id) REFERENCES task_type(id) ON DELETE CASCADE
+);
 
 CREATE TABLE user_has_task(
-  user_id VARCHAR(255),
-  task_id VARCHAR(255),
-  board_id VARCHAR(255),
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (board_id, task_id) REFERENCES task(board_id, id)
+  user_email VARCHAR(255),
+  task_id INT,
+  board_id INT,
+  FOREIGN KEY (user_email) REFERENCES user(email) ON DELETE CASCADE,
+  FOREIGN KEY (board_id, task_id) REFERENCES task(board_id, id) ON DELETE CASCADE
 );
+
 /*stores a user's ownership and availability at a certain board*/
 CREATE TABLE user_has_board(
-  user_id VARCHAR(255),
-  board_id VARCHAR(255),
+  user_email VARCHAR(255),
+  board_id INT,
   is_manager BOOLEAN,
   sun_start INT,
   sun_end INT,
@@ -55,34 +72,22 @@ CREATE TABLE user_has_board(
   fri_end INT,
   sat_start INT,
   sat_end INT,
-  FOREIGN KEY(user_id) REFERENCES user(id),
-  FOREIGN KEY (board_id) REFERENCES board(id)
-)
+  FOREIGN KEY(user_email) REFERENCES user(email) ON DELETE CASCADE,
+  FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
+);
 
 /*stores how good a user is at a board's task type*/
 CREATE TABLE user_perform_board(
-  user_id VARCHAR(255),
-  board_id VARCHAR(255),
-  task_type_id VARCHAR (255),
+  user_email VARCHAR(255),
+  board_id INT,
+  task_type_id INT,
   type VARCHAR(255),
   performance VARCHAR(255),
-  FOREIGN KEY(user_id) REFERENCES user(id),
-  FOREIGN KEY (board_id) REFERENCES board(id),
-  FOREIGN KEY (board_id, task_type_id) REFERENCES task_type(board_id, type_id)
-)
+  FOREIGN KEY(user_email) REFERENCES user(email), /*edited to have on delete cascade*/
+  FOREIGN KEY (board_id) REFERENCES board(id), /*edited to have on delete cascade*/
+  FOREIGN KEY (board_id, task_type_id) REFERENCES task_type(board_id, id) /*edited to have on delete cascade*/
+);
 
-CREATE TABLE task(
-  id VARCHAR(255),
-  board_id VARCHAR(255),
-  name VARCHAR(255),
-  type VARCHAR(255),
-  time_start INT,
-  time_end INT,
-  priority VARCHAR(255),
-  date_set DATE,
-  PRIMARY KEY (board_id, id),
-  FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
-)
 
 
 

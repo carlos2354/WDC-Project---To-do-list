@@ -5,11 +5,11 @@ var vuemain = new Vue({
       info: {
         id: "000001",
         name: "Carlos Atis",
-        first_name:"Carlos",
-        last_name:"Atis",
-        email: "carlos.atis154@gmail.com",
+        first_name:"Hunter",
+        last_name:"Dong",
+        email: "hunter@gmail.com",
         profilePicture: "images/pngfuel.com.png",
-        birthday: "01/10/1998",
+        birthday: "12/03/1994",
         phone: 0469863752,
         background: "student",
         isManager: false,
@@ -22,21 +22,10 @@ var vuemain = new Vue({
         name: "Algorithm Design and Structure Analysis",
         id: "0000002",
         active: false
-      }, {
-        name: "Algorithm Design and Data Structures",
-        id: "0000003",
-        active: false
-      }, {
-        name: "Professional Practice",
-        id: "0000004",
-        active: false
-      }, {
-        name: "Foundations of Human Neuroanatomy",
-        id: "0000005",
-        active: false
       }],
       profile_display: true,
       table_display: false,
+      empty_display:true,
 
     },
 
@@ -60,38 +49,23 @@ var vuemain = new Vue({
         performance: "Good",
         color: "good"
       }, //15 length as long as task tags
-      {
-        type: "Studying",
-        performance: "Great",
-        color: "great"
-      },
-      {
-        type: "Research",
-        performance: "Unsatisfactory",
-        color: "unsatisfactory"
-      },
-      {
-        type: "Documenting",
-        performance: "Not Set",
-        color: "not-set"
-      },
     ],
 
     availability: {
-      mon_s: 8,
-      mon_e: 20,
-      tue_s: 8,
-      tue_e: 20,
-      wed_s: 8,
-      wed_e: 20,
-      thu_s: 8,
-      thu_e: 20,
-      fri_s: 8,
-      fri_e: 20,
-      sat_s: 8,
+      mon_s: 0,
+      mon_e: 15,
+      tue_s: 0,
+      tue_e: 16,
+      wed_s: 0,
+      wed_e: 17,
+      thu_s: 0,
+      thu_e: 18,
+      fri_s: 0,
+      fri_e: 19,
+      sat_s: 0,
       sat_e: 20,
-      sun_s: 8,
-      sun_e: 20,
+      sun_s: 0,
+      sun_e: 21,
     },
 
     members: [{
@@ -121,77 +95,53 @@ var vuemain = new Vue({
           "Not Set",
         ],
         task_performance_string: "Cleaning: Good \nStudying: Good \nResearch: Great \nDocumenting: Unsatisfactory" //15 length as long as task tags
-      },
-
-      {
-        first_name: "Huatao",
-        last_name: "Dong",
-        id: "000002",
-        image: "images/yellow-flower.jpg",
-        availability: {
-          mon_s: 8,
-          mon_e: 20,
-          tue_s: 10,
-          tue_e: 20,
-          wed_s: 10,
-          wed_e: 23,
-          thu_s: 10,
-          thu_e: 15,
-          fri_s: 8,
-          fri_e: 20,
-          sat_s: 9,
-          sat_e: 20,
-          sun_s: 10,
-          sun_e: 18
-        },
-        task_performance: ["Good",
-          "Great",
-          "Unsatisfactory",
-          "Not Set",
-        ],
-        task_performance_string: "Cleaning: Good \nStudying: Great \nResearch: Unsatisfactory \nDocumenting: Not set"
       }
     ],
     tasks: [{
-        id: 1,
-        name: "Research",
-        type: "Study",
-        start_time: "08:00",
-        end_time: "10:00",
-        status: "Complete",
-        person: ["Carlos", "Hunter"],
-        priority: "high"
-      }, {
-        id: 2,
-        name: "Watering plants",
-        type: "Gardening",
-        start_time: "19:00",
-        end_time: "20:00",
-        person: ["Ofel"],
-        priority: "medium"
-      },
-      {
-        id: 3,
-        name: "Studying Code",
-        type: "Study",
-        start_time: "15:00",
-        end_time: "20:00",
-        person: ["Carlos"],
-        priority: "high"
-      }
+    id: 1,
+    name: "Server response",
+    type: "Finished a task",
+    start_time: "08:00",
+    end_time: "10:00",
+    status: "Complete",
+    person: ["Carlos", "Hunter"],
+    priority: "high"
+  },
     ]
 
   },
   methods: {
     goto_profile: function() {
       vuemain.user.table_display = true;
+      vuemain.user.empty_display = true;
       vuemain.user.profile_display = false;
     },
 
-    //----------------------------general ajax----------------------------
+    //################################### General Ajax ###################################
+    load: function(id) {
+      vuemain.user.table_display = true;
+      vuemain.user.profile_display = true;
+      vuemain.user.empty_display = false;
+
+      console.log("called");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var server_response = JSON.parse(this.response);
+          vuemain.user = server_response.user;
+          }
+      };
+
+      xhttp.open("GET", "/users/board/load", true);
+      xhttp.send();
+    },
+
+    //################################### Populate today ###################################
     populate_today: function(id) {
       vuemain.user.table_display = false;
+      vuemain.user.empty_display = true;
       vuemain.user.profile_display = true;
+
 
       var board_id_value = id;
       var today = new Date;
@@ -215,12 +165,49 @@ var vuemain = new Vue({
           vuemain.board.year = year;
           vuemain.board.date = today;
           vuemain.board.date_word = vuemain.board.day + " " + today.toLocaleString('default', { month: 'long' }) + " " + vuemain.board.year;
+          $( "#slidersun" ).slider( "values", [ vuemain.availability.sun_s, vuemain.availability.sun_e ] );
+          $( "#slidermon" ).slider( "values", [ vuemain.availability.mon_s, vuemain.availability.mon_e ] );
+          $( "#slidertue" ).slider( "values", [ vuemain.availability.tue_s, vuemain.availability.tue_e ] );
+          $( "#sliderwed" ).slider( "values", [ vuemain.availability.wed_s, vuemain.availability.wed_e ] );
+          $( "#sliderthu" ).slider( "values", [ vuemain.availability.thu_s, vuemain.availability.thu_e ] );
+          $( "#sliderfri" ).slider( "values", [ vuemain.availability.fri_s, vuemain.availability.fri_e ] );
+          $( "#slidersat" ).slider( "values", [ vuemain.availability.sat_s, vuemain.availability.sat_e ] );
+          $("#sundayfro").text(vuemain.availability.sun_s + ":00");
+          $("#sundayto").text("- " + vuemain.availability.sun_e + ":00");
+          $("#mondayfro").text(vuemain.availability.mon_s + ":00");
+          $("#mondayto").text("- " + vuemain.availability.mon_e + ":00");
+          $("#tuesdayfro").text(vuemain.availability.tue_s + ":00");
+          $("#tuesdayto").text("- " + vuemain.availability.tue_e + ":00");
+          $("#wednesdayfro").text(vuemain.availability.wed_s + ":00");
+          $("#wednesdayto").text("- " + vuemain.availability.wed_e + ":00");
+          $("#thursdayfro").text(vuemain.availability.thu_s + ":00");
+          $("#thursdayto").text("- " + vuemain.availability.thu_e + ":00");
+          $("#fridayfro").text(vuemain.availability.fri_s + ":00");
+          $("#fridayto").text("- " + vuemain.availability.fri_e + ":00");
+          $("#saturdayfro").text(vuemain.availability.sat_s + ":00");
+          $("#saturdayto").text("- " + vuemain.availability.sat_e + ":00");
+
+
+          if (vuemain.board.email == vuemain.user.info.email)
+          {
+            vuemain.user.managerTrue = true;
+            vuemain.user.managerFalse = false;
+          }
+          else
+          {
+            vuemain.user.managerFalse = true;
+            vuemain.user.managerTrue = false;
+          }
+          console.log("mt " + vuemain.user.managerTrue + "mf " + vuemain.user.managerFalse);
+
+
         }
       };
 
       xhttp.open("POST", "/users/board/populate", true);
       xhttp.setRequestHeader("Content-type", "application/json");
       xhttp.send(JSON.stringify({
+        "id": id,
         "day": day,
         "month": month,
         "year": year,
@@ -228,6 +215,7 @@ var vuemain = new Vue({
       }));
     },
 
+    //################################### Populate on date ###################################
     populate_on_date: function(when) {
       var board_id_value = vuemain.board.id;
 
@@ -273,6 +261,7 @@ var vuemain = new Vue({
       }));
     },
 
+    //################################### Save profile ###################################
     save_profile: function() {
 
       var xhttp = new XMLHttpRequest();
@@ -294,7 +283,29 @@ var vuemain = new Vue({
       }));
     },
 
-    //----------------------------manager ajax----------------------------
+    //################################### Manager Ajax ###################################
+    //################################### Add board ###################################
+    add_board: function(){
+      var board_name = $("#add-board").val();
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          vuemain.user.boards = JSON.parse(this.response);
+        }
+      };
+      console.log(board_name + " " + vuemain.user.first_main + " " + vuemain.user.last_name + " " + vuemain.user.email);
+      xhttp.open("POST", "/users/manager/add_board", true);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send(JSON.stringify({
+        "board_name": board_name,
+        "first_name":vuemain.user.first_name,
+        "last_name":vuemain.user.last_name
+      }));
+
+      $("#add-board").val("");
+    },
+
     add_task_type: function() {
       var task_type_value = document.getElementById("task-type-create").value;
 
@@ -306,11 +317,13 @@ var vuemain = new Vue({
       };
 
       xhttp.open("POST", "/users/manager/add_task_type", true);
-      xhttp.send(task_type_value);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send(JSON.stringify({"task_type":task_type_value}));
 
       document.getElementById("task-type-create").value = "";
     },
 
+    //################################### Finish task ###################################
     add_member: function() {
       var member_email_value = document.getElementById("member-email-input").value;
 
@@ -321,15 +334,17 @@ var vuemain = new Vue({
         }
       };
       xhttp.open("POST", "/users/manager/add_member", true);
-      xhttp.send(member_email_value);
+        xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send(JSON.stringify({"member_email":member_email_value}));
 
       document.getElementById("member-email-input").value = "";
     },
 
+    //################################### Add task ###################################
     add_task: function() {
       var task_name_value = document.getElementById("task-type-input").value;
       var task_type_select = document.getElementById("task_type_select");
-      var task_type_selected = task_type_select.options[task_type_select.selectedIndex].text;
+      var task_type_selected = task_type_select.options[task_type_select.selectedIndex].value;
       var task_start_time_value= parseInt(document.getElementById("task_start").innerHTML);
       var task_end_time_value= parseInt(document.getElementById("task_end").innerHTML);
       var task_persons=$(".member-list-checkbox:checked");
@@ -369,8 +384,8 @@ var vuemain = new Vue({
       }));
     },
 
+    //################################### Finish task ###################################
     finish_task: function(id) {
-
       console.log(id);
 
       var xhttp = new XMLHttpRequest();
@@ -388,7 +403,8 @@ var vuemain = new Vue({
       }));
     },
 
-    //----------------------------employee ajax----------------------------
+    //################################### employee ajax ###################################
+    //################################### Save availability ###################################
     save_availability: function() {
       console.log(vuemain.availability.sun_s);
       console.log(vuemain.availability.sun_e);
@@ -437,12 +453,14 @@ var vuemain = new Vue({
         "fri_e": vuemain.availability.fri_e,
         "sat_s": vuemain.availability.sat_s,
         "sat_e": vuemain.availability.sat_e,
+        "board_id":vuemain.board.id
       }));
     },
 
-    set_performance: function(performance, index) {
+    //################################### Set performance ###################################
+    set_performance: function(performance, id) {
       var performance_value = performance;
-      var index_value = index;
+      var type_id = id;
 
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
@@ -451,18 +469,29 @@ var vuemain = new Vue({
         }
       };
 
+      console.log(performance_value + " " + type_id);
       xhttp.open("POST", "/users/user/set_performance", true);
       xhttp.setRequestHeader("Content-type", "application/json");
       xhttp.send(JSON.stringify({
         "performance": performance_value,
-        "index": index_value,
+        "type_id":type_id
       }));
+    },
+    pop:function()
+    {
+      $(function() {
+      $('[data-toggle="popover"]').popover({
+        trigger: 'focus'
+      });
+    });
+
     }
   },
 });
 
 //---------------------populate the board as soon as page loads -------------------------
-vuemain.populate_today(vuemain.board.id);
+//vuemain.populate_today(vuemain.board.id);
+vuemain.load();
 
 //---------------------sidebar collapse---------------------
 $(document).ready(function() {
@@ -471,15 +500,16 @@ $(document).ready(function() {
   });
 });
 
-//---------------------data table---------------------
-$(document).ready(function() {
-  var t = $('#example').DataTable();
-});
+          //---------------------data table---------------------
+// $(document).ready(function() {
+//   var t = $('#example').DataTable();
+// });
+
+
 
 
 //---------------------popover---------------------
-$(function() {
-  $('[data-toggle="popover"]').popover({
-    trigger: 'focus'
-  });
-});
+
+// jQuery(document).ready(function($){
+//     $('[data-toggle="popover"]').popover();
+// });

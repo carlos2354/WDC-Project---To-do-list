@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Main</title>
 
+
+
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
@@ -28,30 +30,33 @@
   <link rel="stylesheet" href="stylesheets/custom-bootstrap.css">
 
   <script>
+// $(function() {
+//   $('[data-toggle="popover"]').popover({
+//     trigger: 'focus'
+//   });
+// });
     $(function() {
       $("#slidersun").slider({
         values: [vuemain.availability.sun_s, vuemain.availability.sun_e],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
-          vuemain.availability.sun_s = ui.values[0];
-          vuemain.availability.sun_e = ui.values[1];
-          var start =  vuemain.availability.sun_s;
-          var end =  vuemain.availability.sun_e;
-          // vuemain.availability.sun_s = start;
-          // vuemain.availability.sun_e = end;
+          var start = ui.values[0];
+          var end = ui.values[1];
+          vuemain.availability.sun_s = start;
+          vuemain.availability.sun_e = end;
           $("#sundayfro").text((start) + ":00");
           $("#sundayto").text("- " + end + ":00");
         }
       });
 
       $("#slidermon").slider({
-        values:[vuemain.availability.mon_s, vuemain.availability.mon_e],
+        values: [vuemain.availability.mon_s, vuemain.availability.mon_e],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
           var start = ui.values[0];
@@ -67,7 +72,7 @@
         values: [vuemain.availability.tue_s, vuemain.availability.tue_e],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
           var start = ui.values[0];
@@ -83,7 +88,7 @@
         values: [vuemain.availability.wed_s, vuemain.availability.wed_e],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
           var start = ui.values[0];
@@ -99,7 +104,7 @@
         values: [vuemain.availability.thu_s, vuemain.availability.thu_e],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
           var start = ui.values[0];
@@ -112,10 +117,10 @@
       });
 
       $("#sliderfri").slider({
-        values:[vuemain.availability.fri_s, vuemain.availability.fri_e],
+        values: [vuemain.availability.fri_s, vuemain.availability.fri_e],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
           var start = ui.values[0];
@@ -128,10 +133,10 @@
       });
 
       $("#slidersat").slider({
-        values:[vuemain.availability.sat_s, vuemain.availability.sat_e],
+        values: [vuemain.availability.sat_s, vuemain.availability.sat_e],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
           var start = ui.values[0];
@@ -147,7 +152,7 @@
         values: [0, 24],
         range: true,
         min: 0,
-        max: 24,
+        max: 23,
         step: 1,
         slide: function(event, ui) {
           var start = ui.values[0];
@@ -176,13 +181,43 @@
             <a href="#">{{item.name}}</a>
           </li>
         </template>
+        <li style="text-align:center"><button type="button" class="btn btn-outline-jeans btn-sm btn-round" data-toggle="modal" data-target="#addBoardModal">
+            + Add board
+          </button></li>
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="addBoardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="text-align:center">
+                <div class="wrap-input100 validate-input">
+                  <input class="input100" type="text" name="task" id="add-board" placeholder="Board name">
+                  <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input">
+                  <input class="input100" type="text" name="task" id="new-type" placeholder="Task type">
+                  <span class="focus-input100"></span>
+                </div>
+                <button type="button" name="button" data-dismiss="modal" class="btn btn-jeans button-margin btn-round" v-on:click="add_board()">+ Add board</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </ul>
 
       <!--Profile-->
       <div class="d-flex no-gutter profile-container mt-auto ">
         <div class="col-4 sidebar-img-container">
-          <a href="#" v-on:click="goto_profile()"> <img v-bind:src="user.info.profilePicture" class="profile-img" alt=""></a>
+          <a href="#" v-on:click="goto_profile()"> <img v-bind:src="user.info.image_source" class="profile-img" alt=""></a>
         </div>
         <div class="col-8">
           <a href="#" v-on:click="goto_profile()">{{user.info.first_name}} {{user.info.last_name}}</a>
@@ -228,7 +263,7 @@
         <!--Content header row(2/2)-->
         <div class="content-header-2 d-flex align-items-baseline ">
           <!--paging-->
-          <div class="content-paging text-left col-lg-4">
+          <div class="text-left col-lg-4">
             <a class="" href="#" aria-label="Previous" v-on:click="populate_on_date('prev')">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
@@ -241,17 +276,20 @@
           </div>
 
           <!--Employee buttons-->
-          <div class="row ml-auto">
+          <div  v-if="user.managerFalse" class="row ml-auto">
             <!--My Availability button to modal-->
-            <div class="col-lg-4 text-right" style="padding-top:.3rem; padding-bottom:.3rem;">
-              <button type="button" class="btn btn-outline-jeans btn-round" data-toggle="modal" data-target="#myAvailabilityModal">My Availability</button>
+            <div  class="col-lg-6 text-right" style="padding-top:.3rem; padding-bottom:.3rem;">
+              <button  type="button" class="btn btn-outline-jeans btn-round" data-toggle="modal" data-target="#myAvailabilityModal">My Availability</button>
             </div>
             <!--My performance to modal-->
-            <div class="col-lg-4 text-right" style="padding-top:.3rem; padding-bottom:.3rem;">
-              <button type="button" class="btn btn-outline-jeans btn-round" data-toggle="modal" data-target="#myTasksModal">My Performance</button>
+            <div class="col-lg-6 text-right" style="padding-top:.3rem; padding-bottom:.3rem;">
+              <button  type="button" class="btn btn-outline-jeans btn-round" data-toggle="modal" data-target="#myTasksModal">My Performance</button>
             </div>
+
+          </div>
+          <div  v-if="user.managerTrue" class = "row ml-auto">
             <div class="col-lg-4 text-right" style="padding-top:.3rem; padding-bottom:.3rem;">
-              <button type="button" class="btn btn-jeans btn-round" data-toggle="modal" data-target="#addTaskModal">+ Add Task</button>
+              <button type="button" class="btn btn-jeans btn-round" data-toggle="modal" style= "padding:0,0" data-target="#addTaskModal"> + Add Task</button>
             </div>
           </div>
         </div>
@@ -260,7 +298,7 @@
 
         <!--modal(1/5) Members modal-->
         <div class="modal fade" id="membersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Members</h5>
@@ -273,42 +311,52 @@
                 <!--manager own row-->
                 <div class="member-list d-flex">
                   <div class="col-1 profile-img-container align-items-center">
-                    <img class="profile-img" v-bind:src="board.manager_image" alt="">
+                    <img class="profile-img" v-bind:src="board.image_source" alt="">
                   </div>
-                  <a href="#" v-on:click()="get_profile_id()" class="flex-grow-1">{{board.manager_name}}</a>
+                  <a href="#"  class="flex-grow-1">{{board.first_name}} {{board.last_name}}</a>
                   <div class="col-3 text-right">
                     <i class="fas fa-crown"></i>
                   </div>
                 </div>
                 <!--members row-->
-                <div class="member-list d-flex" v-for="(item,index) in members">
+                <template  v-for="(item,index) in members">
+
+
+                <div class="member-list d-flex">
                   <div class="col-1 profile-img-container align-items-center">
-                    <img class="profile-img" v-bind:src="item.image" alt="">
+                    <img class="profile-img" v-bind:src="item.image_source" alt="">
                   </div>
 
-                  <a href="#" v-on:click()="get_profile_id()" class="flex-grow-1">{{item.first_name}} {{item.last_name}}</a>
+                  <a href="#" class="flex-grow-1">{{item.first_name}} {{item.last_name}}</a>
 
-                  <div class="col-3 text-right">
-                    <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover"
-                      v-bind:data-content="'Sunday: '  + item.availability.sun_s + ':00 - ' + item.availability.sun_e + ':00\n' +'Monday: '  + item.availability.mon_s + ':00 - ' + item.availability.mon_e + ':00\n' + 'Tuesday: '  + item.availability.tue_s + ':00 - ' + item.availability.tue_e + ':00\n' +'Wednesday: '  + item.availability.wed_s + ':00 - ' + item.availability.wed_e + ':00\n' +'Thursday: '  + item.availability.thu_s + ':00 - ' + item.availability.thu_e + ':00\n' +'Friday: '  + item.availability.fri_s + ':00 - ' + item.availability.fri_e + ':00\n' +'Saturday: '  + item.availability.sat_s + ':00 - ' + item.availability.sat_e + ':00\n'"
+                  <div class = "col-2 text-right">
+                    <button v-on:click="pop()" type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover"
+                      v-bind:data-content="item.info"
+                      title="Information">Information</button>
+                  </div>
+                  <div class="col-2 text-right">
+                    <button v-on:click="pop()" type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover"
+                      v-bind:data-content="'Sunday: '  + item.sun_s + ':00 - ' + item.sun_e + ':00\n' +'Monday: '  + item.mon_s + ':00 - ' + item.mon_e + ':00\n' + 'Tuesday: '  + item.tue_s + ':00 - ' + item.tue_e + ':00\n' +'Wednesday: '  + item.wed_s + ':00 - ' + item.wed_e + ':00\n' +'Thursday: '  + item.thu_s + ':00 - ' + item.thu_e + ':00\n' +'Friday: '  + item.fri_s + ':00 - ' + item.fri_e + ':00\n' +'Saturday: '  + item.sat_s + ':00 - ' + item.sat_e + ':00\n'"
                       title="Availability">Availability</button>
                   </div>
 
-                  <div class="col-3 text-right">
-                    <button type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover" v-bind:data-content="item.task_performance_string" title="Performance">Performance</button>
+                  <div class="col-2 text-right">
+                    <button v-on:click="pop()" type="button" class="btn btn-sm btn-outline-jeans btn-round" data-toggle="popover"  v-bind:data-content="item.task_performance_string" title="Performance">Performance</button>
                   </div>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="Username is required">
+                </template>
+
+                <div v-if="user.managerTrue" class="wrap-input100 validate-input" data-validate="Username is required">
                   <input class="input100" type="text" name="task" id="member-email-input" placeholder="Member email">
                   <span class="focus-input100"></span>
                 </div>
-                <button type="button" name="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_member()">+ Add member</button>
+                <button v-if="user.managerTrue" type="button" name="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_member()">+ Add member</button>
               </div>
             </div>
           </div>
         </div>
 
-        <!--modal(2/5) Tasks modal-->
+        <!--modal(2/5) Task types modal-->
         <div class="modal fade bd-example-modal-sm" id="tasksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
@@ -320,15 +368,15 @@
               </div>
               <div class="modal-body d-flex flex-column">
                 <div class="" v-for="item in task_types">
-                  <p>{{item}}</p>
+                  <p>{{item.name}}</p>
                 </div>
                 <div class="">
-                  <div class="wrap-input100 validate-input" data-validate="Username is required">
+                  <div v-if="user.managerTrue" class="wrap-input100 validate-input" data-validate="Username is required">
                     <input class="input100" type="text" name="task" id="task-type-create" placeholder="Task type">
                     <span class="focus-input100"></span>
                   </div>
                 </div>
-                <button type="button" name="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_task_type()">+ Add task type</button>
+                <button v-if="user.managerTrue" type="button" name="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_task_type()">+ Add task type</button>
               </div>
             </div>
           </div>
@@ -390,7 +438,7 @@
 
               </div>
               <div class="modal-footer d-flex flex-column">
-                <button type="button" name="button" class="text-center btn btn-jeans button-margin btn-round " v-on:click="save_availability()" style="width:80%;">Save availability</button>
+                <button type="button" name="button" class="text-center btn btn-jeans button-margin btn-round" data-dismiss="modal" v-on:click="save_availability()" style="width:80%;">Save availability</button>
               </div>
             </div>
           </div>
@@ -420,9 +468,9 @@
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" v-on:click="set_performance('great', index)">Great</a>
-                        <a class="dropdown-item" href="#" v-on:click="set_performance('good', index)">Good</a>
-                        <a class="dropdown-item" href="#" v-on:click="set_performance('not good', index)">Not Good</a>
+                        <a class="dropdown-item" href="#" v-on:click="set_performance('Great', item.id)">Great</a>
+                        <a class="dropdown-item" href="#" v-on:click="set_performance('Good', item.id)">Good</a>
+                        <a class="dropdown-item" href="#" v-on:click="set_performance('Unsatisfactory', item.id)">Unsatisfactory</a>
                       </div>
                     </div>
                   </div>
@@ -453,14 +501,14 @@
                 <!--task type-->
                 <select class="custom-select" id="task_type_select" style="margin-top:1rem;">
                   <option selected>Task type</option>
-                  <option v-for="item in task_types" value="item">{{item}}</option>
+                  <option v-for="item in task_types" v-bind:value="item.id">{{item.name}}</option>
                 </select>
                 <!--task time-->
                 <div class="modal-task-slide">
                   <p>
                     Time
                     <span id="task_start">0</span><span>:00 - </span>
-                    <span id="task_end">24</span><span>:00</span>
+                    <span id="task_end">23</span><span>:00</span>
                   </p>
                   <div class="slider" id="slidertask"></div>
                 </div>
@@ -470,11 +518,12 @@
                     <div class="col-sm-2">Members:</div>
                     <div class="col-sm-10">
                       <div class="form-check" v-for="(item, index) in members" style="padding-top:.3rem;  ">
-                        <input class="form-check-input member-list-checkbox" type="checkbox" v-bind:value="item.id">
+                        <input class="form-check-input member-list-checkbox" type="checkbox" v-bind:value="item.email">
                         <label class="form-check-label" for="defaultCheck1">
                           {{item.first_name}} {{item.last_name}}
                         </label>
                       </div>
+
                     </div>
                   </div>
                 </form>
@@ -484,19 +533,19 @@
                     <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
                     <div class="col-sm-10">
                       <div class="form-check">
-                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="low" checked>
+                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="Low" checked>
                         <label class="form-check-label" for="gridRadios1">
                           Low
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="medium">
+                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="Medium">
                         <label class="form-check-label" for="gridRadios2">
                           Medium
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="high">
+                        <input class="form-check-input priority-radio" type="radio" name="priorityradio" value="High">
                         <label class="form-check-label" for="gridRadios2">
                           High
                         </label>
@@ -504,7 +553,7 @@
                     </div>
                   </div>
                 </fieldset>
-                <button type="button" class="btn btn-jeans button-margin btn-round"  v-on:click="add_task()" data-dismiss="modal">+ Add task</button>
+                <button type="button" class="btn btn-jeans button-margin btn-round" v-on:click="add_task()" data-dismiss="modal">+ Add task</button>
                 <!--<button type="button" name="button" class="btn btn-jeans button-margin btn-round" >+ Add task</button>-->
               </div>
             </div>
@@ -530,8 +579,8 @@
                 <tr>
                   <td>{{item.name}}</td>
                   <td>{{item.type}}</td>
-                  <td>{{item.start_time}} - {{item.end_time}}</td>
-                  <td> <span v-for="persons in item.person">{{persons}} </span> </td>
+                  <td>{{item.start_time}}:00 - {{item.end_time}}:00</td>
+                  <td> <span v-for="persons in item.person">{{persons.first_name}} </span> </td>
                   <td>{{item.priority}}</td>
                   <td>
                     <button type="button" data-toggle="tooltip" data-placement="right" title="click to finish" class="btn btn-success btn-round btn-sm" v-on:click="finish_task(item.id)">
@@ -544,6 +593,19 @@
         </div>
       </div>
 
+      <!--empty page-->
+      <div v-bind:class="{ page_empty: user.empty_display}">
+        <button type="button" class="btn btn-jeans sidebarCollapse">
+            <i class="fas fa-angle-left"></i>
+          </button>
+        <div class="d-flex justify-content-center align-items-center" style = "height:100vh">
+          <div class="" style="text-align:center">
+            <i class="fas fa-chalkboard" style="font-size:8rem; color: rgb(150, 150, 150);;"></i>
+            <br> <br>
+            <p style="font-size:1.5rem;color: rgb(150, 150, 150);">Add or select a board from the side panel</p>
+          </div>
+        </div>
+      </div>
 
       <!--profile page-->
       <div v-bind:class="{ page_profile: user.profile_display}">
@@ -555,10 +617,11 @@
           <div class="d-flex flex-column text-center">
             <!--profile picture-->
             <div class="profile-image-div">
-              <img v-bind:src="user.info.profilePicture" style="min-width:25%; max-width:25%; padding-top:2rem; padding-bottom:2rem" alt="">
+              <img v-bind:src="user.info.image_source" style="min-width:25%; max-width:25%; padding-top:2rem; padding-bottom:2rem" alt="">
             </div>
 
             <div class="">
+              <!--tab buttons-->
               <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="personal-info-tab" data-toggle="tab" href="#personal-info" role="tab" aria-controls="home" aria-selected="true">Personal information</a>
@@ -600,7 +663,7 @@
                       <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                      <input class="input100" type="email" name="profile-email-input" id="profile-email-input" v-model="user.info.email">
+                      <input class="input100" type="email" name="profile-email-input" readonly id="profile-email-input" v-model="user.info.email">
                       <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
@@ -612,7 +675,7 @@
                       <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                      <input class="input100" type="date" name="profile-birthday-input" placeholder = "10/10/1998"id="profile-birthday-input" v-model="user.info.birthday">
+                      <input class="input100" type="date" name="profile-birthday-input" placeholder="10/10/1998" id="profile-birthday-input" v-model="user.info.birthday">
                       <span class="focus-input100"></span>
                     </div>
                     <br>
@@ -627,7 +690,8 @@
         </div>
       </div>
     </div>
-
+    <!--Vue javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
     <!--Bootstrap javascript-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -636,18 +700,20 @@
     <!-- Font awesome for icon -->
     <script src="https://kit.fontawesome.com/e8b7ee603e.js" crossorigin="anonymous"></script>
 
-    <!--Data Tables javascript-->
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-    <!--Vue javascript -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+      <!--Data Tables javascript-->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <!--My custom javascript-->
     <script src="javascripts/main-js.js"></script>
+
+
     <script>
 
     </script>
